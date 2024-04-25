@@ -1,7 +1,48 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import localImage from '../media/InverTech.jpeg';
+
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Welcome to Astro.">	
+	<div class="flex flex-col items-center justify-center gap-3 w-full bg-gray-800 h-[95vh] bg-gradient-to-r from-[#143266] text-white">
+		<h1 class="text-8xl font-bold flex items-center justify-center gap-2">
+			<Icon name="fluent:arrow-trending-lines-20-filled"/>
+			InverTech
+		</h1>
+		<p class="text-4xl font-thin">Ahorros e Inversiones</p>
+	</div>
+
+	<div class="flex justify-center items-center w-[84%] bg-[#0d0f14] text-white py-24">
+		<div class="flex flex-col justify-center items-center gap-5">
+			<p class="text-4xl">Solución a problemas</p>
+			<p class="font-light text-lg w-[400px] text-center">A través del análisis de la información proveida por el usuario, se produce información adicional y recomendaciones para el usuario</p>			
+		</div>
+		<!-- <img src={localImage.src} class="size-52"> -->
+	</div>
+
+	<div class="flex flex-row justify-around items-center w-[84%] pb-24 text-white">
+		<div class="flex flex-col items-center justify-center w-1/4 border rounded-lg h-[250px]">
+			<p class="w-full h-20 flex justify-center items-center text-xl font-bold border-b">Entrada</p>
+			<p class="h-[180px] flex justify-center items-center text-center px-5">El algoritmo recibe información acerca de las acciones económicas del usuario en el mes (Pasivos y Activos)</p>
+		</div>
+		<Icon name="fluent:arrow-right-12-regular" class="size-5" />
+		<div class="flex flex-col items-center justify-center w-1/4 border rounded-lg h-[250px]">
+			<p class="w-full h-20 flex justify-center items-center text-xl font-bold border-b">Proceso + Análisis</p>
+			<p class="h-[180px] flex justify-center items-center text-center px-5">La información anterior pasa por un conjunto de cálculos matemáticos, según el resultado de estos se obtiene información</p>
+		</div>
+		<Icon name="fluent:arrow-right-12-regular" class="size-5" />
+		<div class="flex flex-col items-center justify-center w-1/4 border rounded-lg h-[250px]">
+			<p class="w-full h-20 flex justify-center items-center text-xl font-bold border-b">Salida</p>
+			<p class="h-[180px] flex justify-center items-center text-center px-5">Se muestra por pantalla las diferentes conclusiones, consejos y recomendaciones para el usuario</p>
+		</div>
+	</div>
+
+	<div class="flex flex-col items-center justify-center gap-5 w-full h-[50vh] pb-24 text-white">
+		<Icon name="fluent:brain-circuit-24-regular" class="size-20"/>
+		<p class="text-4xl">Algoritmo inteligente</p>
+		<p class="font-light text-lg w-[400px] text-center">Utiliza información fiable de sitios web para ayudar a lograr un mejor manejo del dinero</p>
+	</div>
 	
 </Layout>
