@@ -22,8 +22,8 @@ const { title } = Astro.props;
 	</head>
 	<body class="w-full flex items-center justify-center flex-col bg-[#0d0f14]">
 
-		<div class="flex flex-col items-center justify-between w-[84%]  text-white py-3">
-			<nav class="flex justify-between w-full px-[20px]">
+		<div class="fixed top-0 left-0 border border-b-gray-200 border-x-[#0d0f14] border-t-[#0d0f14] flex flex-col items-center justify-between w-full bg-[#0d0f14] text-white py-3">
+			<nav class="w-[84%] flex justify-between px-[20px]">
 				<a class="font-semibold text-lg flex items-center justify-center gap-1" href="/">
 					<Icon name="fluent:arrow-trending-lines-20-filled" class="size-5"/>
 					InverTech
@@ -37,7 +37,7 @@ const { title } = Astro.props;
 			</nav>			
 		</div>
  
-		<slot />
+		<slot/>
 
 		<footer class="w-[84%] text-white flex justify-around items-center p-5">
 			<p class="font-semibold text-lg flex items-center justify-center gap-1">

@@ -1,0 +1,38 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="">
+	<div class="w-full mt-[54px] h-[95vh] flex flex-col justify-center items-center text-white bg-gray-600 bg-gradient-to-br from-[#143266] gap-3">
+		<h1 class="text-8xl font-bold flex items-center justify-center gap-2">
+			<Icon name="fluent:arrow-trending-lines-20-filled"/>
+			InverTech
+		</h1>
+		<p class="text-3xl font-light">Bienvenido</p>
+	</div>
+
+    <!-- Definir moneda -->
+    <div class="flex justify-center flex-col items-center my-14 gap-5">
+        <label for="currencyInfo" class="text-2xl font-semibold text-white">Escoja la moneda local</label>
+        <select onblur="reportCurrencyLog()" id="currencyInfo" class="appearance-none px-5 py-1 border-none outline-none text-xl" name="currencyList" form="currencyForm">
+            <option value="1">Peso Colombiano</option>
+            <option value="2">Peso Mexicano</option>
+            <option value="3" selected>Dolar</option>
+            <option value="4">Euro</option>
+        </select>    
+        <button class="hover:bg-gray-200 hover:border-gray-800 transition-all duration-700 hover:text-gray-800 text-white border-gray-300 flex justify-around items-center gap-1 border rounded-md px-2 py-1" id="confirmCurrency">
+            <p class="text-lg font-semibold">Confirmar</p>
+            <Icon name="fluent:checkmark-12-filled" />
+        </button>
+    </div>
+
+    <script>
+        const confirmCurrency = document.querySelector("#confirmCurrency");
+        confirmCurrency.addEventListener("click", () => {
+            var currency = document.querySelector("#currencyInfo");
+            var selectedCurrency = currency.options[currency.selectedIndex].text;
+            alert("Usted ha seleccionado: "+selectedCurrency)
+        });
+    </script>
+</Layout>
