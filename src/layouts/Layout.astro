@@ -1,13 +1,16 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -16,36 +19,39 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="w-full flex items-center justify-center flex-col bg-[#0d0f14]">
+		<div>
+
+		</div>
+		<div class="flex flex-col items-center justify-between w-[84%] bg-[#0d0f14] text-white py-3">
+			<nav class="flex justify-between w-full px-[20px]">
+				<p class="font-semibold text-lg flex items-center justify-center gap-1">
+					<Icon name="fluent:arrow-trending-lines-20-filled" class="size-5"/>
+					InverTech
+				</p>	
+				<ul class="inline-flex space-x-5">
+					<li class="flex items-center"><a href="">HOME</a></li>
+					<li class="flex items-center"><a href="">ABOUT</a></li>
+					<li class="flex items-center"><a href="">DOCUMENTATION</a></li>
+					<li class="flex items-center"><a href="">PARTNERS</a></li>
+					<p class="flex items-center">a</p>
+				</ul>				
+			</nav>			
+		</div>
+		<div class="flex flex-col items-center justify-center gap-3 w-full bg-gray-800 h-[70vh] bg-gradient-to-r from-[#143266] text-white">
+			<h1 class="text-7xl font-bold flex items-center justify-center gap-2">
+				<Icon name="fluent:arrow-trending-lines-20-filled"/>
+				InverTech
+			</h1>
+			<p class="text-2xl font-thin">Ahorros e Inversiones</p>
+		</div>
+		<div class="flex justify-between items-center w-[84%] bg-[#0d0f14] text-white p-5">
+			<div>
+				<p>InverTech: Ahorros e Inversiones</p>
+				<p>InverTech consiste en un algoritmo el cual busca ayudar a personas y empresas con el manejo del dinero, mediante el análisis de información subministrada e información obtenida de fuentes fiables</p>			
+			</div>
+			<img src="/src/media/InverTech.jpeg" class="size-52">
+		</div>
 		<slot />
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

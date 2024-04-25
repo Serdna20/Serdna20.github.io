@@ -1,6 +1,10 @@
 import { defineConfig } from 'astro/config';
+import tailwind from "@astrojs/tailwind";
+
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://Serdna20.github.io',
-  })
+  site: 'https://Serdna20.github.io',
+  integrations: [tailwind(), icon()]
+});
