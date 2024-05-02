@@ -14,25 +14,93 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Definir moneda -->
     <div class="flex justify-center flex-col items-center my-14 gap-5">
-        <label for="currencyInfo" class="text-2xl font-semibold text-white">Escoja la moneda local</label>
-        <select onblur="reportCurrencyLog()" id="currencyInfo" class="appearance-none px-5 py-1 border-none outline-none text-xl" name="currencyList" form="currencyForm">
-            <option value="1">Peso Colombiano</option>
-            <option value="2">Peso Mexicano</option>
-            <option value="3" selected>Dolar</option>
-            <option value="4">Euro</option>
-        </select>    
-        <button class="hover:bg-gray-200 hover:border-gray-800 transition-all duration-700 hover:text-gray-800 text-white border-gray-300 flex justify-around items-center gap-1 border rounded-md px-2 py-1" id="confirmCurrency">
-            <p class="text-lg font-semibold">Confirmar</p>
+        <section class="flex justify-center items-center gap-10 w-full">
+            <div class="flex justify-center items-center flex-col gap-2">
+                <label for="currencyInfo" class="text-2xl font-semibold text-white">Moneda de partida</label>
+                <div class="flex justify-center items-center h-[74px] bg-red-400 w-64 flex-col">
+                    <input type="number" class="text-xl px-5 appearance-none outline-none h-full w-full border-b-2" id="moneyInput">
+                    <select id="currencyInfo" class="appearance-none px-5 py-1 border-none outline-none text-xl w-full" name="currencyList" form="currencyForm">
+                        <option value="0" selected>Peso Colombiano (COP)</option>
+                        <option value="1">Peso Mexicano (MXN)</option>
+                        <option value="2">Dolar (USD)</option>
+                        <option value="3">Euro (EUR)</option>
+                        <option value="4">Yen Japonés (JPY)</option>
+                        <option value="5">Libra Esterlina (GBP)</option>
+                        <option value="6">Yuan Chino (CNY)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex justify-center items-center flex-col gap-2">
+                <label for="currencyInfo" class="text-2xl font-semibold text-white">Moneda de llegada</label>
+                <div class="flex justify-center items-center h-[74px] bg-white w-64 flex-col">
+                    <!-- <input type="number" class="px-5 appearance-none outline-none h-full w-full border-b-2" id="moneyInput"> -->
+                    <p id="displayFinalResult" class="px-5 border-b-2 h-full w-full text-xl flex justify-start items-center">(Resultado)</p>
+                    <select id="currencyFinal" class="appearance-none px-5 py-1 border-none outline-none text-xl w-full" name="currencyList" form="currencyForm">
+                        <option value="0" selected>Peso Colombiano (COP)</option>
+                        <option value="1">Peso Mexicano (MXN)</option>
+                        <option value="2">Dolar (USD)</option>
+                        <option value="3">Euro (EUR)</option>
+                        <option value="4">Yen Japonés (JPY)</option>
+                        <option value="5">Libra Esterlina (GBP)</option>
+                        <option value="6">Yuan Chino (CNY)</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+        <button class="hover:bg-gray-200 hover:border-gray-800 transition-all duration-700 hover:text-gray-800 text-white border-gray-300 flex justify-around items-center gap-1 border rounded-md px-2 py-1" id="testButton">
+            <p class="text-lg font-semibold">Refrescar</p>
             <Icon name="fluent:checkmark-12-filled" />
         </button>
     </div>
 
     <script>
-        const confirmCurrency = document.querySelector("#confirmCurrency");
-        confirmCurrency.addEventListener("click", () => {
-            var currency = document.querySelector("#currencyInfo");
-            var selectedCurrency = currency.options[currency.selectedIndex].text;
-            alert("Usted ha seleccionado: "+selectedCurrency)
-        });
+
+        // Almacena el valor de conversión
+        const currencyArray = [3914, 17, 1, 0.9399, 156.22, 0.7986, 7.2411];
+        const symbolArray = ["$ COP", "$ MXN", "$ USD", "€ EUR", "¥ JPY", "£ GBP", "¥ CNY"]
+
+        // Botones e información
+        const confirmCurrencyButton = document.querySelector("#confirmCurrencyButton");
+        var currency = document.querySelector("#currencyInfo");
+        var moneyAmount = document.querySelector("#moneyInput");
+        var currencyFinal = document.querySelector("#currencyFinal");        
+
+        // Codigo que hace la conversión
+        function refreshPrize() {
+            const money = moneyAmount.value
+            const currencyPicked = currency.value
+            const toCurrency = currencyFinal.value
+            document.querySelector("#displayFinalResult").innerHTML = (money*currencyArray[toCurrency]/currencyArray[currencyPicked]).toFixed(3) + " " + symbolArray[toCurrency]
+        }
+
+        moneyAmount.addEventListener("change", refreshPrize); currency.addEventListener("change", refreshPrize); currencyFinal.addEventListener("change", refreshPrize)
+
+        // Legacy code
+
+        // confirmCurrencyButton.addEventListener("click", () => {            
+        //     var selectedCurrency = currency.options[currency.selectedIndex].text;
+        //     var currencyPicked = currency.value;
+        //     alert(currencyPicked)
+        //     alert("Usted ha seleccionado: "+selectedCurrency)
+        //     // currency.setAttribute("border-none", "");
+        // });
+
+        // const testButton = document.querySelector("#testButton");
+
+        // testButton.addEventListener("click", refreshPrize)
+        // testButton.addEventListener("click", () => {
+        //     const money = moneyAmount.value
+        //     const currencyPicked = currency.value
+        //     const toCurrency = currencyFinal.value
+        //     document.querySelector("#displayFinalResult").innerHTML = (money*currencyArray[toCurrency]/currencyArray[currencyPicked]).toFixed(3) + " " + symbolArray[toCurrency]
+        //     // alert((money*currencyArray[toCurrency]/currencyArray[currencyPicked]).toFixed(3))
+        // })
+
+        // moneyAmount.addEventListener("change", () => {
+        //     const money = moneyAmount.value
+        //     const currencyPicked = currency.value
+        //     const toCurrency = currencyFinal.value
+        //     document.querySelector("#displayFinalResult").innerHTML = (money*currencyArray[toCurrency]/currencyArray[currencyPicked]).toFixed(3) + " " + symbolArray[toCurrency]
+        // })
     </script>
 </Layout>

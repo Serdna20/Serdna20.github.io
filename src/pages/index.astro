@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
-import localImage from '../media/InverTech.jpeg';
+import MainPageInfo from '../components/MainPageInfo.astro';
 
 ---
 
@@ -23,20 +23,11 @@ import localImage from '../media/InverTech.jpeg';
 	</div>
 
 	<div class="flex flex-row justify-around items-center w-[84%] pb-24 text-white">
-		<div class="flex hover:bg-gray-200 hover:border-gray-800 group hover:text-gray-800 transition-all duration-700 flex-col items-center justify-center w-1/4 border rounded-lg h-[250px]">
-			<p class="w-full h-20 flex justify-center items-center text-xl font-bold group-hover:border-gray-800 border-b">Entrada</p>
-			<p class="h-[180px] flex justify-center items-center text-center px-5">El algoritmo recibe información acerca de las acciones económicas del usuario en el mes (Pasivos y Activos)</p>
-		</div>
+		<MainPageInfo title="Entrada" contenido="El algoritmo recibe información acerca de las acciones económicas del usuario en el mes (Pasivos y Activos)"/>		
 		<Icon name="fluent:arrow-right-12-regular" class="size-5" />
-		<div class="flex hover:bg-gray-200 hover:border-gray-800 group hover:text-gray-800 transition-all duration-700 flex-col items-center justify-center w-1/4 border rounded-lg h-[250px]">
-			<p class="w-full h-20 flex justify-center items-center text-xl font-bold group-hover:border-gray-800 border-b">Proceso + Análisis</p>
-			<p class="h-[180px] flex justify-center items-center text-center px-5">La información anterior pasa por un conjunto de cálculos matemáticos, según el resultado de estos se obtiene información</p>
-		</div>
-		<Icon name="fluent:arrow-right-12-regular" class="size-5" />
-		<div class="flex hover:bg-gray-200 hover:border-gray-800 group hover:text-gray-800 transition-all duration-700 flex-col items-center justify-center w-1/4 border rounded-lg h-[250px]">
-			<p class="w-full h-20 flex justify-center items-center text-xl font-bold group-hover:border-gray-800 border-b">Salida</p>
-			<p class="h-[180px] flex justify-center items-center text-center px-5">Se muestra por pantalla las diferentes conclusiones, consejos y recomendaciones para el usuario</p>
-		</div>
+		<MainPageInfo title="Proceso + Análisis" contenido="La información anterior pasa por un conjunto de cálculos matemáticos, según el resultado de estos se obtiene información"/>
+		<Icon name="fluent:arrow-right-12-regular" class="size-5" />		
+		<MainPageInfo title="Salida" contenido="Se muestra por pantalla las diferentes conclusiones, consejos y recomendaciones para el usuario"/>
 	</div>
 
 	<div class="flex flex-col items-center justify-center gap-5 w-full pb-24 text-white">
