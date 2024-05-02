@@ -14,6 +14,7 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Definir moneda -->
     <div class="flex justify-center flex-col items-center my-14 gap-5">
+        <h1 class="text-5xl font-semibold text-white py-2">Conversor de monedas</h1>
         <section class="flex justify-center items-center gap-10 w-full">
             <div class="flex justify-center items-center flex-col gap-2">
                 <label for="currencyInfo" class="text-2xl font-semibold text-white">Moneda de partida</label>
@@ -47,14 +48,37 @@ import Layout from '../layouts/Layout.astro';
                 </div>
             </div>
         </section>
-        <button class="hover:bg-gray-200 hover:border-gray-800 transition-all duration-700 hover:text-gray-800 text-white border-gray-300 flex justify-around items-center gap-1 border rounded-md px-2 py-1" id="testButton">
+        <!-- <button class="hover:bg-gray-200 hover:border-gray-800 transition-all duration-700 hover:text-gray-800 text-white border-gray-300 flex justify-around items-center gap-1 border rounded-md px-2 py-1" id="testButton">
             <p class="text-lg font-semibold">Refrescar</p>
             <Icon name="fluent:checkmark-12-filled" />
-        </button>
+        </button> -->
     </div>
+
+    <!-- Definir cantidad de personas y gastos (beta) -->
+    <section class="flex flex-col justify-center items-center gap-2">
+        <section class="flex justify-center items-center gap-2 flex-row pb-2">
+            <div class="flex justify-center items-center flex-col">
+                <p class="text-white">Monto inicial</p>
+                <input id="initialMoneyInput" class="appearance-none outline-none px-2 py-1" type="number">
+            </div>
+            <div class="flex justify-center items-center flex-col">
+                <p class="text-white">Cantidad de personas</p>
+                <input id="peopleAmountInput" class="appearance-none outline-none px-2 py-1" type="number">            
+            </div>
+            <div class="flex justify-center items-center flex-col">
+                <p class="text-white">Gastos semanales</p>
+                <input id="spendingsInput" class="appearance-none outline-none px-2 py-1" type="number">
+            </div>
+        </section>        
+        <button id="updateReportButton" class="p-2 text-white flex justify-center items-center gap-1 border rounded-md border-gray-300">
+            <p>Confirmar</p>
+            <Icon name="fluent:checkmark-12-filled" />
+        </button>
+    </section>
 
     <script>
 
+        // Part ONE
         // Almacena el valor de conversión
         const currencyArray = [3914, 17, 1, 0.9399, 156.22, 0.7986, 7.2411];
         const symbolArray = ["$ COP", "$ MXN", "$ USD", "€ EUR", "¥ JPY", "£ GBP", "¥ CNY"]
@@ -63,17 +87,41 @@ import Layout from '../layouts/Layout.astro';
         const confirmCurrencyButton = document.querySelector("#confirmCurrencyButton");
         var currency = document.querySelector("#currencyInfo");
         var moneyAmount = document.querySelector("#moneyInput");
-        var currencyFinal = document.querySelector("#currencyFinal");        
+        var currencyFinal = document.querySelector("#currencyFinal");
+
+        moneyAmount.addEventListener("change", refreshPrize)
+        currency.addEventListener("change", refreshPrize)
+        currencyFinal.addEventListener("change", refreshPrize)
 
         // Codigo que hace la conversión
         function refreshPrize() {
             const money = moneyAmount.value
             const currencyPicked = currency.value
             const toCurrency = currencyFinal.value
-            document.querySelector("#displayFinalResult").innerHTML = (money*currencyArray[toCurrency]/currencyArray[currencyPicked]).toFixed(3) + " " + symbolArray[toCurrency]
+            document.querySelector("#displayFinalResult").innerHTML = (money*currencyArray[toCurrency]/currencyArray[currencyPicked]).toFixed(2) + " " + symbolArray[toCurrency]
         }
 
-        moneyAmount.addEventListener("change", refreshPrize); currency.addEventListener("change", refreshPrize); currencyFinal.addEventListener("change", refreshPrize)
+        // Part Two
+        const initialMoneyInput = document.querySelector("#initialMoneyInput")
+        const peopleAmountInput = document.querySelector("#peopleAmountInput")
+        const spendingsInput = document.querySelector("#spendingsInput")
+        const updateButton = document.querySelector("#updateReportButton")
+
+        updateButton.addEventListener("click", () => {
+            const valueToDisplay = initialMoneyInput.value - peopleAmountInput.value*spendingsInput.value*4
+            if ( (initialMoneyInput.value <= spendingsInput.value) || (valueToDisplay <= 0)) {
+                alert("You are broke!!1!!!1!111!!!")
+                return
+            }
+            // Esto me lo enseñó badwin            
+            alert(valueToDisplay)        
+        })
+
+        // initialMoney.addEventListener("change", () => {
+        //     alert(initialMoney.value)
+        // })
+
+        
 
         // Legacy code
 
