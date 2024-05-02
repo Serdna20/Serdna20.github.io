@@ -110,7 +110,7 @@ import Layout from '../layouts/Layout.astro';
         updateButton.addEventListener("click", () => {
             const valueToDisplay = initialMoneyInput.value - peopleAmountInput.value*spendingsInput.value*4
             if ( (initialMoneyInput.value <= spendingsInput.value) || (valueToDisplay <= 0)) {
-                alert("You are broke!!1!!!1!111!!!")
+                alert("Estás en deuda.")
                 return
             }
             // Esto me lo enseñó badwin            
