@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
+import CurrencyInfo from '../components/CurrencyInfo.astro';
+import BetterInput from '../components/BetterInput.astro';
 ---
 
 <Layout title="">
@@ -16,37 +18,16 @@ import Layout from '../layouts/Layout.astro';
     <div class="flex justify-center flex-col items-center my-14 gap-5">
         <h1 class="text-5xl font-semibold text-white py-2">Conversor de monedas</h1>
         <section class="flex justify-center items-center gap-10 w-full">
-            <div class="flex justify-center items-center flex-col gap-2">
-                <label for="currencyInfo" class="text-2xl font-semibold text-white">Moneda de partida</label>
-                <div class="flex justify-center items-center h-[74px] bg-red-400 w-64 flex-col">
-                    <input type="number" class="text-xl px-5 appearance-none outline-none h-full w-full border-b-2" id="moneyInput">
-                    <select id="currencyInfo" class="appearance-none px-5 py-1 border-none outline-none text-xl w-full" name="currencyList" form="currencyForm">
-                        <option value="0" selected>Peso Colombiano (COP)</option>
-                        <option value="1">Peso Mexicano (MXN)</option>
-                        <option value="2">Dolar (USD)</option>
-                        <option value="3">Euro (EUR)</option>
-                        <option value="4">Yen Japonés (JPY)</option>
-                        <option value="5">Libra Esterlina (GBP)</option>
-                        <option value="6">Yuan Chino (CNY)</option>
-                    </select>
-                </div>
-            </div>
-            <div class="flex justify-center items-center flex-col gap-2">
-                <label for="currencyInfo" class="text-2xl font-semibold text-white">Moneda de llegada</label>
-                <div class="flex justify-center items-center h-[74px] bg-white w-64 flex-col">
-                    <!-- <input type="number" class="px-5 appearance-none outline-none h-full w-full border-b-2" id="moneyInput"> -->
-                    <p id="displayFinalResult" class="px-5 border-b-2 h-full w-full text-xl flex justify-start items-center">(Resultado)</p>
-                    <select id="currencyFinal" class="appearance-none px-5 py-1 border-none outline-none text-xl w-full" name="currencyList" form="currencyForm">
-                        <option value="0" selected>Peso Colombiano (COP)</option>
-                        <option value="1">Peso Mexicano (MXN)</option>
-                        <option value="2">Dolar (USD)</option>
-                        <option value="3">Euro (EUR)</option>
-                        <option value="4">Yen Japonés (JPY)</option>
-                        <option value="5">Libra Esterlina (GBP)</option>
-                        <option value="6">Yuan Chino (CNY)</option>
-                    </select>
-                </div>
-            </div>
+            <CurrencyInfo
+                name="Moneda de partida"
+                currencyName='currencyInfo'>
+                <input type="number" class="text-xl px-5 appearance-none outline-none h-full w-full border-b-2" id="moneyInput">
+            </CurrencyInfo>
+            <CurrencyInfo
+                name="Moneda de llegada"
+                currencyName='currencyFinal'>
+                <p id="displayFinalResult" class="overflow-hidden px-5 border-b-2 h-full w-full text-xl flex justify-start items-center">(Resultado)</p>
+            </CurrencyInfo>
         </section>
         <!-- <button class="hover:bg-gray-200 hover:border-gray-800 transition-all duration-700 hover:text-gray-800 text-white border-gray-300 flex justify-around items-center gap-1 border rounded-md px-2 py-1" id="testButton">
             <p class="text-lg font-semibold">Refrescar</p>
@@ -55,7 +36,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <!-- Definir cantidad de personas y gastos (beta) -->
-    <section class="flex flex-col justify-center items-center gap-2">
+    <section class="flex flex-col justify-center items-center gap-2 mb-14">
         <section class="flex justify-center items-center gap-2 flex-row pb-2">
             <div class="flex justify-center items-center flex-col">
                 <p class="text-white">Monto inicial</p>
@@ -74,6 +55,42 @@ import Layout from '../layouts/Layout.astro';
             <p>Confirmar</p>
             <Icon name="fluent:checkmark-12-filled" />
         </button>
+    </section>
+
+    <section class="flex flex-col justify-center items-center gap-2">
+        <section>
+            <BetterInput title='Monto inicial' placeholderText='Ingrese su monto' inputId='initialMoneyAmount'>
+        </section>
+        <section class="flex flex-col justify-center items-center">
+            <h1 class="text-white text-5xl mb-4">Gastos diarios</h1>
+            <section class="flex flex-col justify-center items-center border rounded-md px-2 py-1">
+                <h1 class="text-white text-2xl border-b w-full text-center ">Comidas</h1>
+                <section class="py-1 flex flex-row justify-center items-center gap-2">
+                    <BetterInput title="Desayuno" placeholderText='Ingrese el costo' inputId='foodBreak'/>
+                    <BetterInput title="Almuerzo" placeholderText='Ingrese el costo' inputId='foodLunch'/>
+                    <BetterInput title="Cena" placeholderText='Ingrese el costo' inputId='foodDinner'/>
+                </section>
+            </section>
+            <div class="flex flex-row-reverse items-center justify-center border my-2 rounded-md p-2 gap-1">
+                <h1 class="text-xl h-full text-white text-center flex justify-center items-center border-l pl-1" id="foodMonthlyResult">Resultado</h1>
+                <button id="foodReportButton" class="text-white text-xl h-full flex flex-row gap-1 justify-center items-center">
+                    <p>Obtener resultados</p>
+                    <Icon name="fluent:checkmark-12-filled"/>
+                </button>
+            </div>
+        </section>
+        <section class="flex flex-col justify-center items-center">
+            <h1 class="text-white text-5xl mb-4">Gastos mensuales</h1>
+            <section class="flex flex-col justify-center items-center border rounded-md px-2 py-1">
+                <h1 class="text-white text-2xl border-b w-full text-center ">Recibos</h1>
+                <section class="py-1 flex flex-row justify-center items-center gap-2">
+                    <BetterInput title="Agua" placeholderText='Ingrese el costo' inputId='billWater'/>
+                    <BetterInput title="Electricidad" placeholderText='Ingrese el costo' inputId='billElec'/>
+                    <BetterInput title="Gas" placeholderText='Ingrese el costo' inputId='billGas'/>
+                    <BetterInput title="Internet" placeholderText='Ingrese el costo' inputId='billInternet'/>
+                </section>
+            </section>
+        </section>
     </section>
 
     <script>
@@ -112,10 +129,18 @@ import Layout from '../layouts/Layout.astro';
             if ( (initialMoneyInput.value <= spendingsInput.value) || (valueToDisplay <= 0)) {
                 alert("Estás en deuda.")
                 return
-            }
-            // Esto me lo enseñó badwin            
+            }        
             alert(valueToDisplay)        
         })
+
+        // Part Three
+        document.querySelector("#foodReportButton").addEventListener("click", () => {
+            const breakCost = parseFloat(document.querySelector("#foodBreak").value)
+            const lunchCost = parseFloat(document.querySelector("#foodLunch").value)
+            const dinnerCost = parseFloat(document.querySelector("#foodDinner").value)
+            document.querySelector("#foodMonthlyResult").innerHTML = (breakCost + lunchCost + dinnerCost)*30
+        })
+
 
         // initialMoney.addEventListener("change", () => {
         //     alert(initialMoney.value)
