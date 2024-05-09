@@ -15,28 +15,28 @@ import BetterInput from '../components/BetterInput.astro';
 	</div>
 
     <!-- Definir moneda -->
-    <div class="flex justify-center flex-col items-center my-14 gap-5">
-        <h1 class="text-5xl font-semibold text-white py-2">Conversor de monedas</h1>
-        <section class="flex justify-center items-center gap-10 w-full">
+    <div class="flex justify-center flex-col items-center my-14 gap-5 min-w-[48rem] border rounded-md py-2 px-2">
+        <h1 class="text-5xl font-semibold text-white py-2 border-b w-full text-center px-1">Conversor de monedas</h1>
+        <section class="flex justify-around items-center w-full">
             <CurrencyInfo
-                name="Moneda de partida"
+                name="Cantidad"
                 currencyName='currencyInfo'>
                 <input type="number" class="text-xl px-5 appearance-none outline-none h-full w-full border-b-2" id="moneyInput">
             </CurrencyInfo>
+            <Icon name="fluent:arrow-right-12-regular" class="size-8 text-white" />
             <CurrencyInfo
-                name="Moneda de llegada"
+                name="Convertida a"
                 currencyName='currencyFinal'>
                 <p id="displayFinalResult" class="overflow-hidden px-5 border-b-2 h-full w-full text-xl flex justify-start items-center">(Resultado)</p>
             </CurrencyInfo>
         </section>
-        <!-- <button class="hover:bg-gray-200 hover:border-gray-800 transition-all duration-700 hover:text-gray-800 text-white border-gray-300 flex justify-around items-center gap-1 border rounded-md px-2 py-1" id="testButton">
-            <p class="text-lg font-semibold">Refrescar</p>
-            <Icon name="fluent:checkmark-12-filled" />
-        </button> -->
+        <section>
+            <p class="text-white h-6 text-center italic text-lg" id="informativeCurrencyText"></p>
+        </section>
     </div>
 
     <!-- Definir cantidad de personas y gastos (beta) -->
-    <section class="flex flex-col justify-center items-center gap-2 mb-14">
+    <!-- <section class="flex flex-col justify-center items-center gap-2 mb-14">
         <section class="flex justify-center items-center gap-2 flex-row pb-2">
             <div class="flex justify-center items-center flex-col">
                 <p class="text-white">Monto inicial</p>
@@ -55,17 +55,17 @@ import BetterInput from '../components/BetterInput.astro';
             <p>Confirmar</p>
             <Icon name="fluent:checkmark-12-filled" />
         </button>
-    </section>
+    </section> -->
 
     <section class="flex flex-col justify-center items-center gap-2">
-        <section>
+        <!-- <section>
             <BetterInput title='Monto inicial' placeholderText='Ingrese su monto' inputId='initialMoneyAmount'>
-        </section>
-        <section class="flex flex-col justify-center items-center">
+        </section> -->
+        <section class="flex flex-col justify-center items-center min-w-[48rem] border rounded-md py-2 mb-7">
             <h1 class="text-white text-5xl mb-4">Gastos diarios</h1>
-            <section class="flex flex-col justify-center items-center border rounded-md px-2 py-1">
+            <section class="flex flex-col justify-center items-center w-full px-2 py-1">
                 <h1 class="text-white text-2xl border-b w-full text-center ">Comidas</h1>
-                <section class="py-1 flex flex-row justify-center items-center gap-2">
+                <section class="py-1 flex flex-row w-full justify-around items-center gap-2">
                     <BetterInput title="Desayuno" placeholderText='Ingrese el costo' inputId='foodBreak'/>
                     <BetterInput title="Almuerzo" placeholderText='Ingrese el costo' inputId='foodLunch'/>
                     <BetterInput title="Cena" placeholderText='Ingrese el costo' inputId='foodDinner'/>
@@ -79,101 +79,111 @@ import BetterInput from '../components/BetterInput.astro';
                 </button>
             </div>
         </section>
-        <section class="flex flex-col justify-center items-center">
+        <section class="flex flex-col justify-center items-center min-w-[48rem] border rounded-md py-2 my-7">
             <h1 class="text-white text-5xl mb-4">Gastos mensuales</h1>
-            <section class="flex flex-col justify-center items-center border rounded-md px-2 py-1">
+            <section class="flex flex-col justify-center items-center w-full px-2 py-1">
                 <h1 class="text-white text-2xl border-b w-full text-center ">Recibos</h1>
-                <section class="py-1 flex flex-row justify-center items-center gap-2">
+                <section class="py-1 flex flex-row justify-around w-full items-center gap-2">
                     <BetterInput title="Agua" placeholderText='Ingrese el costo' inputId='billWater'/>
                     <BetterInput title="Electricidad" placeholderText='Ingrese el costo' inputId='billElec'/>
                     <BetterInput title="Gas" placeholderText='Ingrese el costo' inputId='billGas'/>
                     <BetterInput title="Internet" placeholderText='Ingrese el costo' inputId='billInternet'/>
                 </section>
             </section>
+            <div class="flex flex-row-reverse items-center justify-center border my-2 rounded-md p-2 gap-1">
+                <h1 class="text-xl h-full text-white text-center flex justify-center items-center border-l pl-1" id="monthlyResult">Resultado</h1>
+                <button id="monthReportButton" class="text-white text-xl h-full flex flex-row gap-1 justify-center items-center">
+                    <p>Obtener resultados</p>
+                    <Icon name="fluent:checkmark-12-filled"/>
+                </button>
+            </div>
         </section>
     </section>
 
     <script>
 
-        // Part ONE
-        // Almacena el valor de conversión
         const currencyArray = [3914, 17, 1, 0.9399, 156.22, 0.7986, 7.2411];
         const symbolArray = ["$ COP", "$ MXN", "$ USD", "€ EUR", "¥ JPY", "£ GBP", "¥ CNY"]
 
-        // Botones e información
-        const confirmCurrencyButton = document.querySelector("#confirmCurrencyButton");
-        var currency = document.querySelector("#currencyInfo");
-        var moneyAmount = document.querySelector("#moneyInput");
-        var currencyFinal = document.querySelector("#currencyFinal");
+        var foodReportButton = document.querySelector("#foodReportButton");
+        var monthlySpendings = document.querySelector("#monthReportButton");
+        var currency                = document.querySelector("#currencyInfo");
+        var moneyAmount             = document.querySelector("#moneyInput");
+        var currencyFinal           = document.querySelector("#currencyFinal");
+
+        const initialMoneyInput = document.querySelector("#initialMoneyInput")
+        const peopleAmountInput = document.querySelector("#peopleAmountInput")
+        const spendingsInput    = document.querySelector("#spendingsInput")
+        const updateButton      = document.querySelector("#updateReportButton")
 
         moneyAmount.addEventListener("change", refreshPrize)
         currency.addEventListener("change", refreshPrize)
         currencyFinal.addEventListener("change", refreshPrize)
+        foodReportButton.addEventListener("click", refreshFoodSpendings)
+        monthlySpendings.addEventListener("click", refreshBills)
 
-        // Codigo que hace la conversión
+        // updateButton.addEventListener("click", () => {
+        //     const valueToDisplay = initialMoneyInput.value - peopleAmountInput.value*spendingsInput.value*4
+        //     if ( (initialMoneyInput.value <= spendingsInput.value) || (valueToDisplay <= 0)) {
+        //         alert("Estás en deuda.")
+        //         return
+        //     }        
+        //     alert(valueToDisplay)        
+        // })
+
         function refreshPrize() {
             const money = moneyAmount.value
             const currencyPicked = currency.value
             const toCurrency = currencyFinal.value
+            refreshConversor()
+            refreshFoodSpendings()
+            refreshBills()
             document.querySelector("#displayFinalResult").innerHTML = (money*currencyArray[toCurrency]/currencyArray[currencyPicked]).toFixed(2) + " " + symbolArray[toCurrency]
         }
 
-        // Part Two
-        const initialMoneyInput = document.querySelector("#initialMoneyInput")
-        const peopleAmountInput = document.querySelector("#peopleAmountInput")
-        const spendingsInput = document.querySelector("#spendingsInput")
-        const updateButton = document.querySelector("#updateReportButton")
+        function getCost(costArray) {
+            let totalCost = 0
 
-        updateButton.addEventListener("click", () => {
-            const valueToDisplay = initialMoneyInput.value - peopleAmountInput.value*spendingsInput.value*4
-            if ( (initialMoneyInput.value <= spendingsInput.value) || (valueToDisplay <= 0)) {
-                alert("Estás en deuda.")
-                return
-            }        
-            alert(valueToDisplay)        
-        })
+            for (let index = 0; index < costArray.length; index++) {
+                if (isNaN(costArray[index])) {
+                    costArray[index] = 0
+                }
+                totalCost += costArray[index]
+            }
 
-        // Part Three
-        document.querySelector("#foodReportButton").addEventListener("click", () => {
-            const breakCost = parseFloat(document.querySelector("#foodBreak").value)
-            const lunchCost = parseFloat(document.querySelector("#foodLunch").value)
-            const dinnerCost = parseFloat(document.querySelector("#foodDinner").value)
-            document.querySelector("#foodMonthlyResult").innerHTML = (breakCost + lunchCost + dinnerCost)*30
-        })
+            return totalCost
+        }
 
+        function refreshConversor() {
+            const localInfoP = document.querySelector("#informativeCurrencyText")
+            if (currency.value != currencyFinal.value) {
+                localInfoP.innerHTML = 1 + " " + symbolArray[currency.value] +  " equivale a " + (1*currencyArray[currencyFinal.value]/currencyArray[currency.value]).toFixed(3) + " " + symbolArray[currencyFinal.value]
+            }
+            else {
+                localInfoP.innerHTML = "Moneda de partida y llegada son iguales"
+            }
+        }
 
-        // initialMoney.addEventListener("change", () => {
-        //     alert(initialMoney.value)
-        // })
+        function refreshFoodSpendings() {
+            const foodValues = [
+            parseFloat(document.querySelector("#foodBreak").value),
+            parseFloat(document.querySelector("#foodLunch").value),
+            parseFloat(document.querySelector("#foodDinner").value),
+            ]
+            
+            document.querySelector("#foodMonthlyResult").innerHTML = getCost(foodValues)*30 +" "+ symbolArray[currency.value]
+        }
 
-        
+        function refreshBills() {
+            const monthlyArray = [
+                parseFloat(document.querySelector("#billWater").value),
+                parseFloat(document.querySelector("#billElec").value),
+                parseFloat(document.querySelector("#billGas").value),
+                parseFloat(document.querySelector("#billInternet").value)
+            ]
 
-        // Legacy code
+            document.querySelector("#monthlyResult").innerHTML = getCost(monthlyArray) +" "+ symbolArray[currency.value]
+        }
 
-        // confirmCurrencyButton.addEventListener("click", () => {            
-        //     var selectedCurrency = currency.options[currency.selectedIndex].text;
-        //     var currencyPicked = currency.value;
-        //     alert(currencyPicked)
-        //     alert("Usted ha seleccionado: "+selectedCurrency)
-        //     // currency.setAttribute("border-none", "");
-        // });
-
-        // const testButton = document.querySelector("#testButton");
-
-        // testButton.addEventListener("click", refreshPrize)
-        // testButton.addEventListener("click", () => {
-        //     const money = moneyAmount.value
-        //     const currencyPicked = currency.value
-        //     const toCurrency = currencyFinal.value
-        //     document.querySelector("#displayFinalResult").innerHTML = (money*currencyArray[toCurrency]/currencyArray[currencyPicked]).toFixed(3) + " " + symbolArray[toCurrency]
-        //     // alert((money*currencyArray[toCurrency]/currencyArray[currencyPicked]).toFixed(3))
-        // })
-
-        // moneyAmount.addEventListener("change", () => {
-        //     const money = moneyAmount.value
-        //     const currencyPicked = currency.value
-        //     const toCurrency = currencyFinal.value
-        //     document.querySelector("#displayFinalResult").innerHTML = (money*currencyArray[toCurrency]/currencyArray[currencyPicked]).toFixed(3) + " " + symbolArray[toCurrency]
-        // })
     </script>
 </Layout>
