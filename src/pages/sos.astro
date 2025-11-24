@@ -1,0 +1,369 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="SOS - Ayuda Inmediata - StopTheCycle">
+    <!-- Alerta Superior -->
+    <div class="bg-red-600 text-white py-3 px-4 text-center font-bold">
+        ⚠️ Si estás en peligro inmediato, usa el botón de pánico o llama al 123
+    </div>
+
+    <section class="pt-12 pb-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-5xl">🆘</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Ayuda Inmediata</h1>
+                <p class="text-xl text-secondary max-w-2xl mx-auto">
+                    Acceso rápido a servicios de emergencia, refugios y protocolos de seguridad
+                </p>
+            </div>
+
+            <!-- Botón de Pánico Principal -->
+            <div class="max-w-md mx-auto mb-12">
+                <button id="panic-button" class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-8 rounded-2xl text-2xl font-bold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all emergency-pulse">
+                    🚨 BOTÓN DE PÁNICO
+                </button>
+                <p class="text-center text-secondary text-sm mt-3">
+                    Presiona para acceder a opciones de emergencia
+                </p>
+            </div>
+
+            <!-- Opciones de Emergencia Rápida -->
+            <div class="grid md:grid-cols-3 gap-4 mb-12">
+                <a href="tel:123" class="bg-red-500 text-white p-6 rounded-xl text-center hover:bg-red-600 transition-all transform hover:scale-105">
+                    <div class="text-4xl mb-2">🚓</div>
+                    <h3 class="font-bold text-lg mb-1">Policía Nacional</h3>
+                    <p class="text-3xl font-bold">123</p>
+                    <p class="text-sm mt-2">Emergencias 24/7</p>
+                </a>
+
+                <a href="tel:155" class="bg-purple-500 text-white p-6 rounded-xl text-center hover:bg-purple-600 transition-all transform hover:scale-105">
+                    <div class="text-4xl mb-2">💜</div>
+                    <h3 class="font-bold text-lg mb-1">Línea Púrpura</h3>
+                    <p class="text-3xl font-bold">155</p>
+                    <p class="text-sm mt-2">Orientación mujer</p>
+                </a>
+
+                <a href="tel:018000112137" class="bg-orange-500 text-white p-6 rounded-xl text-center hover:bg-orange-600 transition-all transform hover:scale-105">
+                    <div class="text-4xl mb-2">📞</div>
+                    <h3 class="font-bold text-lg mb-1">Nacional</h3>
+                    <p class="text-3xl font-bold">01800 112 137</p>
+                    <p class="text-sm mt-2">Gratuita</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Más Líneas de Emergencia -->
+    <section class="py-12 px-4 bg-card">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Otras Líneas de Emergencia</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border-l-4 border-blue-600">
+                    <div class="flex items-center mb-3">
+                        <span class="text-3xl mr-3">👶</span>
+                        <div>
+                            <h3 class="font-bold text-lg">ICBF</h3>
+                            <a href="tel:141" class="text-2xl font-bold text-blue-600">141</a>
+                        </div>
+                    </div>
+                    <p class="text-sm text-secondary">Protección de menores - 24 horas</p>
+                </div>
+
+                <div class="bg-teal-50 dark:bg-teal-900/20 rounded-xl p-6 border-l-4 border-teal-600">
+                    <div class="flex items-center mb-3">
+                        <span class="text-3xl mr-3">⚖️</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Fiscalía</h3>
+                            <a href="tel:122" class="text-2xl font-bold text-teal-600">122</a>
+                        </div>
+                    </div>
+                    <p class="text-sm text-secondary">Denuncias penales</p>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-6 border-l-4 border-purple-600">
+                    <div class="flex items-center mb-3">
+                        <span class="text-3xl mr-3">🧠</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Salud Mental</h3>
+                            <a href="tel:106" class="text-2xl font-bold text-purple-600">106</a>
+                        </div>
+                    </div>
+                    <p class="text-sm text-secondary">Crisis emocionales</p>
+                </div>
+
+                <div class="bg-pink-50 dark:bg-pink-900/20 rounded-xl p-6 border-l-4 border-pink-600">
+                    <div class="flex items-center mb-3">
+                        <span class="text-3xl mr-3">🏥</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Ambulancia</h3>
+                            <a href="tel:125" class="text-2xl font-bold text-pink-600">125</a>
+                        </div>
+                    </div>
+                    <p class="text-sm text-secondary">Emergencias médicas</p>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-6 border-l-4 border-indigo-600">
+                    <div class="flex items-center mb-3">
+                        <span class="text-3xl mr-3">👨‍⚖️</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Defensoría</h3>
+                            <a href="tel:018000914814" class="text-xl font-bold text-indigo-600">01800 091 4814</a>
+                        </div>
+                    </div>
+                    <p class="text-sm text-secondary">Derechos humanos</p>
+                </div>
+
+                <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-6 border-l-4 border-orange-600">
+                    <div class="flex items-center mb-3">
+                        <span class="text-3xl mr-3">⚠️</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Emergencias</h3>
+                            <a href="tel:123" class="text-2xl font-bold text-orange-600">123</a>
+                        </div>
+                    </div>
+                    <p class="text-sm text-secondary">Cualquier emergencia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Refugios Cercanos -->
+    <section class="py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center gradient-text">Refugios y Centros de Atención</h2>
+            <p class="text-center text-secondary mb-8">
+                Lugares seguros donde puedes recibir protección, alojamiento temporal y apoyo
+            </p>
+
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-6 mb-8 text-center">
+                <p class="text-primary font-semibold mb-3">📍 Activa tu ubicación para encontrar refugios cercanos</p>
+                <button id="find-shelters" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-700">
+                    Buscar Refugios Cercanos
+                </button>
+            </div>
+
+            <div id="shelters-list" class="grid md:grid-cols-2 gap-6">
+                <!-- Principales refugios en Colombia -->
+                <div class="bg-card rounded-xl p-6 border-l-4 border-purple-600">
+                    <h3 class="font-bold text-lg mb-2">Casa de Refugio - Bogotá</h3>
+                    <p class="text-secondary text-sm mb-3">Secretaría Distrital de la Mujer</p>
+                    <div class="space-y-2 text-sm">
+                        <p class="text-secondary">📞 <a href="tel:018000112137" class="text-purple-600 font-semibold">01800 112 137</a></p>
+                        <p class="text-secondary">📍 Ubicación confidencial (se revela al contactar)</p>
+                        <p class="text-secondary">⏰ 24 horas</p>
+                        <p class="text-secondary">✓ Alojamiento, alimentación, apoyo psicológico y legal</p>
+                    </div>
+                </div>
+
+                <div class="bg-card rounded-xl p-6 border-l-4 border-blue-600">
+                    <h3 class="font-bold text-lg mb-2">Centro de Atención Integral (CAIVAS)</h3>
+                    <p class="text-secondary text-sm mb-3">Fiscalía General de la Nación</p>
+                    <div class="space-y-2 text-sm">
+                        <p class="text-secondary">📞 <a href="tel:122" class="text-blue-600 font-semibold">122</a></p>
+                        <p class="text-secondary">📍 Disponible en principales ciudades</p>
+                        <p class="text-secondary">⏰ 24 horas</p>
+                        <p class="text-secondary">✓ Atención integral para víctimas de violencia</p>
+                    </div>
+                </div>
+
+                <div class="bg-card rounded-xl p-6 border-l-4 border-teal-600">
+                    <h3 class="font-bold text-lg mb-2">Comisarías de Familia</h3>
+                    <p class="text-secondary text-sm mb-3">Presente en todos los municipios</p>
+                    <div class="space-y-2 text-sm">
+                        <p class="text-secondary">📞 Busca "Comisaría de Familia" + tu ciudad</p>
+                        <p class="text-secondary">📍 Al menos una por municipio</p>
+                        <p class="text-secondary">⏰ Horario laboral (emergencias 24h vía 123)</p>
+                        <p class="text-secondary">✓ Medidas de protección inmediatas</p>
+                    </div>
+                </div>
+
+                <div class="bg-card rounded-xl p-6 border-l-4 border-pink-600">
+                    <h3 class="font-bold text-lg mb-2">Centros de Atención Mujer</h3>
+                    <p class="text-secondary text-sm mb-3">Alcaldías locales</p>
+                    <div class="space-y-2 text-sm">
+                        <p class="text-secondary">📞 Contacta tu alcaldía local</p>
+                        <p class="text-secondary">📍 Según municipio</p>
+                        <p class="text-secondary">⏰ Horario laboral</p>
+                        <p class="text-secondary">✓ Orientación, apoyo psicológico, talleres</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="/directorio" class="inline-block bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-full font-bold hover:shadow-xl transition-all">
+                    Ver Directorio Completo por Ciudad
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protocolos de Autoprotección -->
+    <section class="py-12 px-4 bg-card">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center gradient-text">Protocolos de Autoprotección</h2>
+            <p class="text-center text-secondary mb-8">
+                Acciones que puedes tomar para protegerte en situaciones de riesgo
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-bold text-xl mb-4 text-red-600">🚨 Si Estás en Peligro Inmediato</h3>
+                    <ol class="space-y-3 text-secondary">
+                        <li><strong class="text-primary">1. Aléjate del agresor:</strong> Ve a una habitación con salida o puerta con cerrojo</li>
+                        <li><strong class="text-primary">2. Llama al 123:</strong> Si no puedes hablar, deja la línea abierta</li>
+                        <li><strong class="text-primary">3. Grita pidiendo ayuda:</strong> Para alertar a vecinos</li>
+                        <li><strong class="text-primary">4. No te encierres en:</strong> Baños sin ventanas, cocina (armas), o habitaciones sin salida</li>
+                        <li><strong class="text-primary">5. Toma tus hijos y sal:</strong> Si es seguro hacerlo</li>
+                        <li><strong class="text-primary">6. Ve a lugar público:</strong> Tienda, estación de policía, casa de vecino</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-xl mb-4 text-orange-600">⚠️ Plan de Seguridad Preventivo</h3>
+                    <ul class="space-y-3 text-secondary">
+                        <li><strong class="text-primary">Identifica salidas:</strong> De tu casa, lugares seguros cercanos</li>
+                        <li><strong class="text-primary">Palabras clave:</strong> Acuerda códigos con personas de confianza</li>
+                        <li><strong class="text-primary">Prepara una maleta:</strong> Documentos, dinero, ropa, medicinas (escóndela)</li>
+                        <li><strong class="text-primary">Memoriza teléfonos:</strong> De emergencia y personas de confianza</li>
+                        <li><strong class="text-primary">Copia de documentos:</strong> Déjalos con alguien de confianza</li>
+                        <li><strong class="text-primary">Dinero de emergencia:</strong> Escondido y accesible</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6">
+                <h3 class="font-bold text-lg mb-4 text-blue-600">📱 Seguridad Digital</h3>
+                <div class="grid md:grid-cols-2 gap-4 text-sm text-secondary">
+                    <ul class="space-y-2">
+                        <li>✓ Usa navegación privada/incógnito</li>
+                        <li>✓ Borra historial de búsqueda después</li>
+                        <li>✓ No guardes números importantes visibles</li>
+                        <li>✓ Cambia contraseñas si sospechas</li>
+                    </ul>
+                    <ul class="space-y-2">
+                        <li>✓ Desactiva ubicación en redes sociales</li>
+                        <li>✓ Crea cuentas de correo secretas</li>
+                        <li>✓ Usa el botón ESC para salir rápido</li>
+                        <li>✓ Considera segundo teléfono seguro</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qué Llevar si Debes Salir -->
+    <section class="py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center gradient-text">Maleta de Emergencia</h2>
+            <p class="text-center text-secondary mb-8">
+                Si debes salir rápidamente, estos son los elementos esenciales
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-card rounded-xl p-6">
+                    <h3 class="font-bold mb-4 text-purple-600">📄 Documentos</h3>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li>✓ Cédulas (tuya y de tus hijos)</li>
+                        <li>✓ Registro civil de nacimiento</li>
+                        <li>✓ Tarjeta de identidad de menores</li>
+                        <li>✓ Carné de salud/EPS</li>
+                        <li>✓ Escrituras o documentos de propiedad</li>
+                        <li>✓ Órdenes de protección previas</li>
+                        <li>✓ Libretas de ahorro/bancarias</li>
+                    </ul>
+                </div>
+
+                <div class="bg-card rounded-xl p-6">
+                    <h3 class="font-bold mb-4 text-blue-600">💊 Salud y Básicos</h3>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li>✓ Medicamentos esenciales</li>
+                        <li>✓ Fórmulas médicas</li>
+                        <li>✓ Artículos de higiene personal</li>
+                        <li>✓ Cambio de ropa (3 días mínimo)</li>
+                        <li>✓ Pañales (si aplica)</li>
+                        <li>✓ Lentes, aparatos médicos</li>
+                        <li>✓ Alimentos no perecederos</li>
+                    </ul>
+                </div>
+
+                <div class="bg-card rounded-xl p-6">
+                    <h3 class="font-bold mb-4 text-green-600">💰 Recursos</h3>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li>✓ Dinero en efectivo</li>
+                        <li>✓ Tarjetas bancarias</li>
+                        <li>✓ Llaves (casa, carro)</li>
+                        <li>✓ Teléfono celular y cargador</li>
+                        <li>✓ Lista de contactos importantes</li>
+                        <li>✓ Objetos de valor fáciles de llevar</li>
+                        <li>✓ Fotos familiares (si es posible)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-6 text-center">
+                <p class="text-secondary">
+                    <strong class="text-primary">Importante:</strong> Prepara esta maleta discretamente y guárdala en lugar seguro (casa de familiar, trabajo) donde el agresor no pueda encontrarla.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Final -->
+    <section class="py-12 px-4 bg-gradient-to-r from-red-500 to-orange-500">
+        <div class="max-w-4xl mx-auto text-center text-white">
+            <h2 class="text-3xl font-bold mb-4">🆘 Recuerda: Tu Vida Es lo Más Importante</h2>
+            <p class="text-lg mb-6">
+                No esperes a que la situación empeore. Busca ayuda ahora.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="tel:123" class="bg-white text-red-600 px-8 py-4 rounded-full font-bold hover:bg-gray-100 text-lg">
+                    🚨 Llamar al 123
+                </a>
+                <a href="/chat" class="bg-red-700 text-white px-8 py-4 rounded-full font-bold hover:bg-red-800 text-lg">
+                    💬 Chat Anónimo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Botón de pánico
+        document.getElementById('panic-button')?.addEventListener('click', function() {
+            const confirmed = confirm('¿Estás en peligro inmediato?\n\nPresiona OK para llamar al 123 (Policía)\nPresiona Cancelar para ver otras opciones');
+            
+            if (confirmed) {
+                window.location.href = 'tel:123';
+            } else {
+                // Scroll a opciones
+                document.querySelector('#shelters-list')?.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Geolocalización para refugios
+        document.getElementById('find-shelters')?.addEventListener('click', function() {
+            if (navigator.geolocation) {
+                this.textContent = 'Buscando...';
+                this.disabled = true;
+                
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        alert(`Ubicación detectada.\n\nPor seguridad, contacta directamente a:\n• Línea Nacional: 01800 112 137\n• Línea Púrpura: 155\n\nEllos te indicarán el refugio más cercano de forma confidencial.`);
+                        this.textContent = 'Buscar Refugios Cercanos';
+                        this.disabled = false;
+                    },
+                    (error) => {
+                        alert('No se pudo acceder a tu ubicación.\n\nLlama a la línea 155 o 01800 112 137 para ubicar el refugio más cercano.');
+                        this.textContent = 'Buscar Refugios Cercanos';
+                        this.disabled = false;
+                    }
+                );
+            } else {
+                alert('Tu navegador no soporta geolocalización.\n\nLlama a la línea 155 para encontrar refugios cercanos.');
+            }
+        });
+    </script>
+</Layout>

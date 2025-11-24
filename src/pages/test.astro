@@ -1,0 +1,344 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Test de Autoevaluación - StopTheCycle">
+    <section class="pt-12 pb-12 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-5xl">📋</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Test de Autoevaluación</h1>
+                <p class="text-xl text-secondary max-w-2xl mx-auto">
+                    Evalúa tu situación de forma confidencial. Este test te ayudará a identificar señales de violencia.
+                </p>
+            </div>
+
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-6 mb-8">
+                <h3 class="font-bold mb-2 text-yellow-800 dark:text-yellow-200">⚠️ Antes de Comenzar</h3>
+                <ul class="space-y-2 text-sm text-secondary">
+                    <li>• Este test es 100% anónimo y no guarda tus respuestas</li>
+                    <li>• Responde con honestidad - nadie más verá tus respuestas</li>
+                    <li>• Si te sientes incómoda/o en cualquier momento, puedes detenerlo</li>
+                    <li>• Este test es orientativo, no reemplaza una evaluación profesional</li>
+                    <li>• Si estás en peligro inmediato, llama al 123</li>
+                </ul>
+            </div>
+
+            <!-- Test Container -->
+            <div id="test-container" class="bg-card rounded-2xl shadow-xl p-8">
+                <!-- Sección de Intro -->
+                <div id="intro-section">
+                    <h2 class="text-2xl font-bold mb-4 gradient-text">¿Estás Viviendo Violencia?</h2>
+                    <p class="text-secondary mb-6">
+                        A continuación encontrarás una serie de preguntas sobre tu relación actual o una relación pasada. 
+                        Responde pensando en tu situación específica.
+                    </p>
+                    <div class="mb-6">
+                        <label class="block font-semibold mb-3 text-primary">¿Sobre qué relación quieres evaluar?</label>
+                        <select id="relation-type" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-primary">
+                            <option value="">Selecciona una opción</option>
+                            <option value="pareja">Pareja actual o ex-pareja</option>
+                            <option value="padre">Padre/Madre</option>
+                            <option value="hijo">Hijo/a</option>
+                            <option value="otro-familiar">Otro familiar</option>
+                            <option value="multiple">Múltiples personas</option>
+                        </select>
+                    </div>
+                    <button id="start-test-btn" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 rounded-full font-bold hover:shadow-xl transition-all" disabled>
+                        Comenzar Evaluación
+                    </button>
+                </div>
+
+                <!-- Sección de Preguntas -->
+                <div id="questions-section" class="hidden">
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-secondary">Progreso</span>
+                            <span id="progress-text" class="text-sm font-semibold text-purple-600">0/20</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                            <div id="progress-bar" class="bg-gradient-to-r from-purple-600 to-blue-600 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div id="question-container" class="mb-8">
+                        <!-- Las preguntas se cargarán dinámicamente aquí -->
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button id="prev-btn" class="flex-1 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200 py-3 rounded-full font-bold hover:bg-gray-400 dark:hover:bg-gray-500 transition-all" disabled>
+                            ← Anterior
+                        </button>
+                        <button id="next-btn" class="flex-1 bg-purple-600 text-white py-3 rounded-full font-bold hover:bg-purple-700 transition-all" disabled>
+                            Siguiente →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sección de Resultados -->
+                <div id="results-section" class="hidden">
+                    <div id="results-content"></div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6">
+                <h3 class="font-bold mb-2 text-blue-600">🔒 Privacidad y Seguridad</h3>
+                <p class="text-sm text-secondary">
+                    Este test se ejecuta completamente en tu navegador y no envía ninguna información a servidores externos. 
+                    Si necesitas salir rápidamente, presiona la tecla <kbd class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">ESC</kbd> para ser redirigido a Google.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const questions = [
+            { id: 1, text: "¿Te insulta, humilla o menosprecia frente a otros o en privado?", category: "psicologica", weight: 3 },
+            { id: 2, text: "¿Controla con quién hablas, a dónde vas, qué ropa usas o revisa tu celular?", category: "psicologica", weight: 4 },
+            { id: 3, text: "¿Te ha golpeado, empujado, jalado el cabello o causado daño físico?", category: "fisica", weight: 5 },
+            { id: 4, text: "¿Te amenaza con hacerte daño a ti, a tus hijos o a personas cercanas?", category: "psicologica", weight: 5 },
+            { id: 5, text: "¿Controla el dinero del hogar o te impide trabajar o estudiar?", category: "economica", weight: 4 },
+            { id: 6, text: "¿Te culpa de sus problemas o explosiones de ira?", category: "psicologica", weight: 3 },
+            { id: 7, text: "¿Te ha forzado a tener relaciones sexuales cuando no querías?", category: "sexual", weight: 5 },
+            { id: 8, text: "¿Sientes miedo de su reacción cuando hablas o haces algo?", category: "psicologica", weight: 4 },
+            { id: 9, text: "¿Te aísla de tu familia y amigos?", category: "psicologica", weight: 4 },
+            { id: 10, text: "¿Rompe objetos, golpea paredes o lanza cosas cuando está enojado/a?", category: "fisica", weight: 3 },
+            { id: 11, text: "¿Te hace sentir que no vales nada o que nadie más te querría?", category: "psicologica", weight: 4 },
+            { id: 12, text: "¿Después de una agresión, se disculpa y promete cambiar (pero vuelve a ocurrir)?", category: "ciclo", weight: 4 },
+            { id: 13, text: "¿Minimiza o niega la violencia diciendo que 'exageras' o 'no fue para tanto'?", category: "psicologica", weight: 3 },
+            { id: 14, text: "¿Tus hijos han presenciado episodios de violencia?", category: "familiar", weight: 5 },
+            { id: 15, text: "¿Has tenido que ir al médico o urgencias por lesiones causadas por esta persona?", category: "fisica", weight: 5 },
+            { id: 16, text: "¿Te impide tomar decisiones sobre tu vida o tus hijos?", category: "psicologica", weight: 4 },
+            { id: 17, text: "¿Usas excusas para justificar su comportamiento ante otros?", category: "negacion", weight: 3 },
+            { id: 18, text: "¿Sientes que 'caminas sobre cáscaras de huevo' para evitar conflictos?", category: "psicologica", weight: 4 },
+            { id: 19, text: "¿Has pensado en dejarlo pero sientes que no puedes o tienes miedo?", category: "control", weight: 4 },
+            { id: 20, text: "¿Ha amenazado con quitarte a los niños, suicidarse o lastimarse si lo dejas?", category: "psicologica", weight: 5 }
+        ];
+
+        let currentQuestion = 0;
+        let answers = [];
+        let relationType = '';
+
+        const relationTypeSelect = document.getElementById('relation-type');
+        const startTestBtn = document.getElementById('start-test-btn');
+        const introSection = document.getElementById('intro-section');
+        const questionsSection = document.getElementById('questions-section');
+        const resultsSection = document.getElementById('results-section');
+        const questionContainer = document.getElementById('question-container');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        relationTypeSelect?.addEventListener('change', (e) => {
+            startTestBtn.disabled = !e.target.value;
+        });
+
+        startTestBtn?.addEventListener('click', () => {
+            relationType = relationTypeSelect.value;
+            introSection.classList.add('hidden');
+            questionsSection.classList.remove('hidden');
+            showQuestion(0);
+        });
+
+        function showQuestion(index) {
+            currentQuestion = index;
+            const question = questions[index];
+            
+            questionContainer.innerHTML = `
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold mb-6 text-primary">
+                        ${question.text}
+                    </h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg cursor-pointer hover:bg-green-100 dark:hover:bg-green-900/30 transition-all border-2 border-transparent hover:border-green-500">
+                            <input type="radio" name="answer" value="0" class="mr-3 w-5 h-5">
+                            <span class="text-secondary">Nunca</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg cursor-pointer hover:bg-yellow-100 dark:hover:bg-yellow-900/30 transition-all border-2 border-transparent hover:border-yellow-500">
+                            <input type="radio" name="answer" value="1" class="mr-3 w-5 h-5">
+                            <span class="text-secondary">Pocas veces</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg cursor-pointer hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-all border-2 border-transparent hover:border-orange-500">
+                            <input type="radio" name="answer" value="2" class="mr-3 w-5 h-5">
+                            <span class="text-secondary">Frecuentemente</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-red-50 dark:bg-red-900/20 rounded-lg cursor-pointer hover:bg-red-100 dark:hover:bg-red-900/30 transition-all border-2 border-transparent hover:border-red-500">
+                            <input type="radio" name="answer" value="3" class="mr-3 w-5 h-5">
+                            <span class="text-secondary">Constantemente</span>
+                        </label>
+                    </div>
+                </div>
+            `;
+
+            // Pre-seleccionar respuesta si ya existe
+            if (answers[index] !== undefined) {
+                const radio = questionContainer.querySelector(`input[value="${answers[index]}"]`);
+                if (radio) radio.checked = true;
+            }
+
+            // Event listeners para las respuestas
+            questionContainer.querySelectorAll('input[name="answer"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    answers[index] = parseInt(radio.value);
+                    nextBtn.disabled = false;
+                });
+            });
+
+            updateProgress();
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = answers[index] === undefined;
+            nextBtn.textContent = index === questions.length - 1 ? 'Ver Resultados' : 'Siguiente →';
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${currentQuestion + 1}/${questions.length}`;
+        }
+
+        prevBtn?.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                showQuestion(currentQuestion - 1);
+            }
+        });
+
+        nextBtn?.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                showQuestion(currentQuestion + 1);
+            } else {
+                showResults();
+            }
+        });
+
+        function showResults() {
+            questionsSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+
+            // Calcular puntuación
+            let totalScore = 0;
+            answers.forEach((answer, index) => {
+                totalScore += answer * questions[index].weight;
+            });
+
+            const maxScore = questions.reduce((sum, q) => sum + (q.weight * 3), 0);
+            const percentage = (totalScore / maxScore) * 100;
+
+            let riskLevel, riskColor, riskIcon, riskMessage, recommendations;
+
+            if (percentage < 20) {
+                riskLevel = "Riesgo Bajo";
+                riskColor = "green";
+                riskIcon = "✅";
+                riskMessage = "Según tus respuestas, no se identifican señales significativas de violencia en tu relación actual. Sin embargo, es importante mantener relaciones saludables basadas en respeto mutuo.";
+                recommendations = [
+                    "Continúa promoviendo la comunicación saludable",
+                    "Establece y mantén límites claros",
+                    "Si algo cambia, no dudes en buscar ayuda",
+                    "Aprende sobre relaciones saludables"
+                ];
+            } else if (percentage < 45) {
+                riskLevel = "Riesgo Moderado";
+                riskColor = "yellow";
+                riskIcon = "⚠️";
+                riskMessage = "Tus respuestas indican algunas señales de alerta en tu relación. Puede que estés experimentando formas sutiles de violencia, especialmente psicológica o control.";
+                recommendations = [
+                    "Habla con alguien de confianza sobre tu situación",
+                    "Llama a la Línea Púrpura 155 para orientación",
+                    "Documenta situaciones preocupantes (fechas, eventos)",
+                    "Considera buscar apoyo psicológico",
+                    "Evalúa si la relación está basada en respeto mutuo"
+                ];
+            } else if (percentage < 70) {
+                riskLevel = "Riesgo Alto";
+                riskColor = "orange";
+                riskIcon = "🚨";
+                riskMessage = "Tus respuestas indican que ESTÁS VIVIENDO VIOLENCIA. Tu situación es seria y requiere atención inmediata. No estás exagerando ni eres responsable de esto.";
+                recommendations = [
+                    "Tu seguridad es lo primero - considera hacer un plan de seguridad",
+                    "Contacta la Línea Nacional: 01800 112 137",
+                    "Habla con una Comisaría de Familia sobre medidas de protección",
+                    "No estás sola/o - busca apoyo profesional",
+                    "Documenta las agresiones (fotos, mensajes, certificados médicos)",
+                    "Identifica lugares seguros y personas de confianza"
+                ];
+            } else {
+                riskLevel = "Riesgo Crítico";
+                riskColor = "red";
+                riskIcon = "🆘";
+                riskMessage = "Tu situación es EXTREMADAMENTE GRAVE. Estás en alto riesgo y tu vida puede estar en peligro. Es fundamental que busques ayuda INMEDIATAMENTE.";
+                recommendations = [
+                    "🚨 Si estás en peligro ahora, llama al 123",
+                    "Busca un refugio seguro lo antes posible",
+                    "Contacta INMEDIATAMENTE: Línea Nacional 01800 112 137",
+                    "Solicita medidas de protección urgentes",
+                    "Prepara una maleta de emergencia (documentos, dinero, ropa)",
+                    "NO confrontes al agresor con estos resultados",
+                    "Activa tu red de apoyo (familia, amigos de confianza)"
+                ];
+            }
+
+            const resultsHTML = `
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">${riskIcon}</div>
+                    <h2 class="text-3xl font-bold mb-2 text-${riskColor}-600">${riskLevel}</h2>
+                    <p class="text-secondary">${riskMessage}</p>
+                </div>
+
+                <div class="bg-${riskColor}-50 dark:bg-${riskColor}-900/20 rounded-xl p-6 mb-8">
+                    <h3 class="font-bold text-lg mb-4 text-${riskColor}-700 dark:text-${riskColor}-300">📋 Recomendaciones:</h3>
+                    <ul class="space-y-2">
+                        ${recommendations.map(rec => `<li class="text-secondary">• ${rec}</li>`).join('')}
+                    </ul>
+                </div>
+
+                ${percentage >= 45 ? `
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-6 mb-8">
+                    <h3 class="font-bold text-lg mb-4 text-red-600">⚠️ Importante:</h3>
+                    <ul class="space-y-2 text-secondary text-sm">
+                        <li>• La violencia NO es tu culpa</li>
+                        <li>• NO tienes que resolver esto sola/o</li>
+                        <li>• La violencia NO mejora con el tiempo, empeora</li>
+                        <li>• Hay personas capacitadas esperando ayudarte</li>
+                        <li>• Mereces vivir sin miedo</li>
+                    </ul>
+                </div>
+                ` : ''}
+
+                <div class="grid md:grid-cols-2 gap-4 mb-8">
+                    <a href="tel:123" class="bg-red-600 text-white p-4 rounded-xl text-center font-bold hover:bg-red-700 transition-all">
+                        🚨 Emergencias 123
+                    </a>
+                    <a href="tel:155" class="bg-purple-600 text-white p-4 rounded-xl text-center font-bold hover:bg-purple-700 transition-all">
+                        💜 Línea Púrpura 155
+                    </a>
+                    <a href="tel:018000112137" class="bg-orange-600 text-white p-4 rounded-xl text-center font-bold hover:bg-orange-700 transition-all">
+                        📞 Nacional 01800 112 137
+                    </a>
+                    <a href="/chat" class="bg-green-600 text-white p-4 rounded-xl text-center font-bold hover:bg-green-700 transition-all">
+                        💬 Chat Anónimo
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <button id="restart-test" class="bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200 px-8 py-3 rounded-full font-semibold hover:bg-gray-400 dark:hover:bg-gray-500 transition-all">
+                        Reiniciar Test
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('results-content').innerHTML = resultsHTML;
+
+            document.getElementById('restart-test')?.addEventListener('click', () => {
+                answers = [];
+                currentQuestion = 0;
+                resultsSection.classList.add('hidden');
+                introSection.classList.remove('hidden');
+                relationTypeSelect.value = '';
+                startTestBtn.disabled = true;
+            });
+        }
+    </script>
+</Layout>

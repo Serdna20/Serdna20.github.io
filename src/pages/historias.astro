@@ -1,0 +1,351 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Historias Reales - StopTheCycle">
+    <section class="pt-12 pb-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-5xl">💪</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Historias de Sobrevivientes</h1>
+                <p class="text-xl text-secondary max-w-2xl mx-auto">
+                    Testimonios reales de personas que rompieron el ciclo de violencia. Sus historias nos recuerdan que sí es posible recuperarse y vivir en paz.
+                </p>
+            </div>
+
+            <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-6 mb-12">
+                <h3 class="font-bold mb-2 text-purple-600">🔒 Protección de Identidad</h3>
+                <p class="text-secondary text-sm">
+                    Todos los nombres y detalles identificables han sido modificados para proteger la privacidad de las sobrevivientes. 
+                    Estas historias son reales y representan experiencias vividas por personas en Colombia.
+                </p>
+            </div>
+
+            <!-- Filtros de Historias -->
+            <div class="mb-8">
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <button class="filter-btn active px-6 py-2 rounded-full font-semibold transition-all" data-filter="todas">
+                        Todas las Historias
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-full font-semibold transition-all" data-filter="fisica">
+                        Violencia Física
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-full font-semibold transition-all" data-filter="psicologica">
+                        Violencia Psicológica
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-full font-semibold transition-all" data-filter="economica">
+                        Violencia Económica
+                    </button>
+                    <button class="filter-btn px-6 py-2 rounded-full font-semibold transition-all" data-filter="sexual">
+                        Violencia Sexual
+                    </button>
+                </div>
+            </div>
+
+            <!-- Historias Grid -->
+            <div id="historias-container" class="space-y-8">
+                <!-- Historia 1 - María -->
+                <div class="historia-card bg-card rounded-2xl shadow-xl overflow-hidden" data-tipos="fisica,psicologica,economica">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-500 p-6 text-white">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-4">
+                                <span class="text-3xl">👩</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">María, 34 años</h3>
+                                <p class="opacity-90">Bogotá • Sobreviviente de 8 años de violencia</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Violencia Física</span>
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Violencia Psicológica</span>
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Violencia Económica</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-secondary mb-4 italic">
+                            "Durante 8 años viví en un infierno que llamaba 'matrimonio'. Los golpes comenzaron al segundo año, pero antes de eso ya estaba el control: revisaba mi celular, decidía mi ropa, manejaba todo el dinero. Me prohibió trabajar cuando quedé embarazada y nunca más pude hacerlo."
+                        </p>
+                        <p class="text-secondary mb-4">
+                            El punto de quiebre llegó cuando mi hija de 6 años me preguntó: "Mami, ¿por qué dejas que papi te pegue?" En ese momento entendí que no solo me estaba destruyendo a mí, sino que le estaba enseñando a ella que eso era normal.
+                        </p>
+                        <p class="text-secondary mb-4">
+                            Llamé a la Línea Púrpura 155. La mujer que me atendió fue un ángel. Me orientó sobre mis derechos, me habló de las comisarías de familia y me dio el contacto de un refugio. Tardé dos semanas más en tomar la decisión final, pero cuando salí de esa casa con mi hija, supe que había salvado dos vidas.
+                        </p>
+                        <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 mb-4">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-2">💚 Hoy, 3 años después:</p>
+                            <ul class="text-secondary text-sm space-y-1">
+                                <li>• Tengo un trabajo estable que amo</li>
+                                <li>• Mi hija está en terapia y mejorando cada día</li>
+                                <li>• Volví a estudiar - estoy en una tecnología en trabajo social</li>
+                                <li>• Ayudo a otras mujeres en situación similar</li>
+                                <li>• Aprendí que no necesito a alguien que me lastime para ser "completa"</li>
+                            </ul>
+                        </div>
+                        <p class="text-secondary font-semibold">
+                            "Si estás leyendo esto y vives algo similar: NO es amor. El amor no duele, no controla, no destruye. Hay vida después de la violencia, y es hermosa. Da el paso, busca ayuda. Yo lo hice y hoy soy libre."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Historia 2 - Carlos -->
+                <div class="historia-card bg-card rounded-2xl shadow-xl overflow-hidden" data-tipos="psicologica">
+                    <div class="bg-gradient-to-r from-blue-500 to-teal-500 p-6 text-white">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-4">
+                                <span class="text-3xl">👨</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Carlos, 28 años</h3>
+                                <p class="opacity-90">Medellín • Sobreviviente de violencia psicológica</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Violencia Psicológica</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-secondary mb-4 italic">
+                            "Como hombre, me costó años reconocer que era víctima de violencia. No había golpes, no había gritos fuertes. Era algo más sutil y por eso más confuso."
+                        </p>
+                        <p class="text-secondary mb-4">
+                            Mi pareja me hacía sentir que todo lo que hacía estaba mal. Mi forma de vestir era ridícula, mis amigos eran mala influencia, mi familia era tóxica. Poco a poco me fui aislando de todos. Dejé de hacer las cosas que me gustaban porque "era egoísta" dedicar tiempo a mis hobbies.
+                        </p>
+                        <p class="text-secondary mb-4">
+                            Lo peor era el gaslighting constante. Me hacía dudar de mi memoria, de mi percepción. "Nunca dije eso, te lo estás inventando." "Eres muy sensible." "Nadie más te aguantaría." Llegué a creer que estaba loco, que el problema era yo.
+                        </p>
+                        <p class="text-secondary mb-4">
+                            Un amigo de la universidad, al que no veía hace años, me contactó. Cuando le conté mi situación, me dijo: "Hermano, eso es violencia psicológica." Me recomendó buscar ayuda profesional. Llamé a la línea 106 de salud mental y empecé terapia.
+                        </p>
+                        <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 mb-4">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-2">💚 Mi proceso de recuperación:</p>
+                            <ul class="text-secondary text-sm space-y-1">
+                                <li>• Terapia psicológica - fundamental para recuperar mi autoestima</li>
+                                <li>• Terminé la relación con apoyo de mi psicólogo</li>
+                                <li>• Reconecté con mi familia y amigos</li>
+                                <li>• Aprendí sobre relaciones saludables y límites</li>
+                                <li>• Hoy ayudo a otros hombres a reconocer este tipo de violencia</li>
+                            </ul>
+                        </div>
+                        <p class="text-secondary font-semibold">
+                            "A los hombres que están pasando por esto: la violencia no siempre es física. Si te sientes controlado, menospreciado, aislado, si dudas constantemente de ti mismo, busca ayuda. No eres débil por ser víctima, eres valiente por reconocerlo."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Historia 3 - Ana -->
+                <div class="historia-card bg-card rounded-2xl shadow-xl overflow-hidden" data-tipos="sexual,fisica">
+                    <div class="bg-gradient-to-r from-pink-500 to-red-500 p-6 text-white">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-4">
+                                <span class="text-3xl">👧</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Ana, 19 años</h3>
+                                <p class="opacity-90">Cali • Sobreviviente de abuso desde los 15 años</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Violencia Sexual</span>
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Violencia Física</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-4 mb-4">
+                            <p class="text-sm text-secondary">
+                                <strong>⚠️ Advertencia:</strong> Esta historia contiene referencias a abuso sexual. Continúa solo si te sientes cómoda/o.
+                            </p>
+                        </div>
+                        <p class="text-secondary mb-4 italic">
+                            "A los 15 años conocí al que pensé sería el amor de mi vida. Tenía 22. Al principio era perfecto, hasta que empezaron las presiones para tener relaciones. Cuando cedí, comenzó el infierno."
+                        </p>
+                        <p class="text-secondary mb-4">
+                            Me obligaba a hacer cosas que yo no quería. Si me negaba, me gritaba, me insultaba, a veces me empujaba. "Si me amaras, lo harías." "Todas las novias lo hacen." Me sentía sucia, usada, pero creía que era mi obligación.
+                        </p>
+                        <p class="text-secondary mb-4">
+                            A los 17 quedé embarazada. Me presionó para abortar y cuando me negué, me abandonó. Volví con mi mamá, avergonzada y destruida. Ella, en lugar de juzgarme, me abrazó y me llevó a la Comisaría de Familia.
+                        </p>
+                        <p class="text-secondary mb-4">
+                            En la comisaría me explicaron que lo que viví fue violencia sexual y abuso. Que incluso en una relación, el sexo debe ser consensuado siempre. Nunca nadie me había explicado eso. Inicié proceso legal, aunque él nunca pagó realmente. Pero esa denuncia me liberó.
+                        </p>
+                        <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 mb-4">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-2">💚 Hoy, a mis 19 años:</p>
+                            <ul class="text-secondary text-sm space-y-1">
+                                <li>• Mi hija tiene 2 años y es mi motor</li>
+                                <li>• Terminé el bachillerato a distancia</li>
+                                <li>• Trabajo medio tiempo y estudio los sábados</li>
+                                <li>• Estoy en terapia y he sanado mucho</li>
+                                <li>• Hablo en colegios sobre violencia en el noviazgo</li>
+                                <li>• Aprendí que merezco respeto siempre</li>
+                            </ul>
+                        </div>
+                        <p class="text-secondary font-semibold">
+                            "A las adolescentes: si tu novio te presiona sexualmente, te grita, te controla o te hace sentir obligada a algo, ESO NO ES AMOR. Hablen con alguien. Línea 141 si son menores. No están solas. Yo salí y ustedes también pueden."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Historia 4 - Laura -->
+                <div class="historia-card bg-card rounded-2xl shadow-xl overflow-hidden" data-tipos="economica,psicologica">
+                    <div class="bg-gradient-to-r from-orange-500 to-yellow-500 p-6 text-white">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-4">
+                                <span class="text-3xl">👩‍💼</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Laura, 42 años</h3>
+                                <p class="opacity-90">Barranquilla • 15 años sin poder trabajar</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Violencia Económica</span>
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Violencia Psicológica</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-secondary mb-4 italic">
+                            "Cuando me casé a los 27, era profesional con un buen trabajo. Él me convenció de renunciar: 'Yo te mantendré, no necesitas trabajar'. Sonaba romántico. Era una trampa."
+                        </p>
+                        <p class="text-secondary mb-4">
+                            Durante 15 años no tuve acceso a dinero. Me daba una 'mesada' para mercado que apenas alcanzaba. Si necesitaba algo personal, debía pedirle y justificarlo. Compraba mi ropa interior con lo que podía ahorrar del mercado. Me sentía humillada constantemente.
+                        </p>
+                        <p class="text-secondary mb-4">
+                            Cuando intentaba buscar trabajo, él saboteaba mis entrevistas: escondía mi ropa, 'olvidaba' recoger los niños, causaba peleas la noche anterior para que llegara con los ojos hinchados. Logró que perdiera varias oportunidades hasta que dejé de intentar.
+                        </p>
+                        <p class="text-secondary mb-4">
+                            El cambio vino cuando mi hermana me habló del Programa de Mujeres Ahorradoras y me prestó para empezar un pequeño negocio desde casa. Cuando él se dio cuenta y trató de quitarme el dinero, acudí a la Comisaría. Solicité medidas de protección y empecé el proceso de divorcio.
+                        </p>
+                        <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 mb-4">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-2">💚 Mi recuperación económica:</p>
+                            <ul class="text-secondary text-sm space-y-1">
+                                <li>• Crecí mi negocio de repostería - ahora tengo 3 empleadas</li>
+                                <li>• Hice un curso del SENA en administración</li>
+                                <li>• Tengo mis propias cuentas bancarias y tarjetas</li>
+                                <li>• Ayudo a otras mujeres a emprender</li>
+                                <li>• Mis hijos ven que su mamá es fuerte e independiente</li>
+                            </ul>
+                        </div>
+                        <p class="text-secondary font-semibold">
+                            "La dependencia económica es una cárcel invisible. Si tu pareja controla todo el dinero, te impide trabajar o estudiar, te mantiene sin recursos propios, es violencia. Nunca es tarde para recuperar tu independencia. A los 42 empecé de cero y hoy prospero."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Historia 5 - Roberto -->
+                <div class="historia-card bg-card rounded-2xl shadow-xl overflow-hidden" data-tipos="fisica,psicologica">
+                    <div class="bg-gradient-to-r from-indigo-500 to-purple-500 p-6 text-white">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-4">
+                                <span class="text-3xl">👴</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Roberto, 68 años</h3>
+                                <p class="opacity-90">Pereira • Maltrato por parte de su hijo</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Violencia Física</span>
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Explotación Económica</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-secondary mb-4 italic">
+                            "Nunca pensé que a mi edad viviría violencia de la persona que crié. Mi hijo, mi única familia cercana, se volvió mi verdugo."
+                        </p>
+                        <p class="text-secondary mb-4">
+                            Después de que mi esposa murió, invité a mi hijo a vivir conmigo. Él estaba pasando por problemas económicos y pensé que nos haríamos compañía. Al principio todo bien, pero cuando empezó a beber, todo cambió.
+                        </p>
+                        <p class="text-secondary mb-4">
+                            Me gritaba, me empujaba, me quitaba mi pensión completa y me dejaba sin dinero para medicamentos. Un día me golpeó tan fuerte que caí y me fracturé la cadera. En el hospital, la trabajadora social notó algo raro y me preguntó en privado. Rompí a llorar.
+                        </p>
+                        <p class="text-secondary mb-4">
+                            Ella contactó a la Comisaría de Familia y a la Personería. Me sentía culpable, era mi hijo. Pero me explicaron que lo que vivía era maltrato a adulto mayor, un delito grave. Pusieron una medida de protección y mi hijo no puede acercarse a mí.
+                        </p>
+                        <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4 mb-4">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-2">💚 Hoy vivo en paz:</p>
+                            <ul class="text-secondary text-sm space-y-1">
+                                <li>• Vivo en un hogar para adultos mayores que me trata con dignidad</li>
+                                <li>• Manejo mi propia pensión</li>
+                                <li>• Hago parte de un grupo de abuelos que juegan parqués</li>
+                                <li>• Mi hijo está en rehabilitación - hay esperanza de reconciliación sana</li>
+                                <li>• Aprendí que merezco respeto, sin importar mi edad</li>
+                            </ul>
+                        </div>
+                        <p class="text-secondary font-semibold">
+                            "A los adultos mayores: no es normal que los hijos o familiares nos maltraten. No importa si los criamos, si son familia. Merecemos vivir en paz y dignidad. Llamen a la línea 155 o 123. No estamos solos."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mensaje de Esperanza -->
+            <div class="mt-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-8 text-white text-center">
+                <h2 class="text-3xl font-bold mb-4">💜 Tú También Puedes Lograrlo</h2>
+                <p class="text-lg mb-6">
+                    Estas historias son prueba de que sí es posible salir, sanar y construir una vida libre de violencia. 
+                    El primer paso es el más difícil, pero hay personas esperando ayudarte.
+                </p>
+                <div class="grid md:grid-cols-4 gap-4">
+                    <a href="tel:155" class="bg-white text-purple-600 px-4 py-3 rounded-full font-bold hover:bg-gray-100">
+                        💜 Línea 155
+                    </a>
+                    <a href="tel:018000112137" class="bg-white text-pink-600 px-4 py-3 rounded-full font-bold hover:bg-gray-100">
+                        📞 Nacional
+                    </a>
+                    <a href="/chat" class="bg-white text-purple-600 px-4 py-3 rounded-full font-bold hover:bg-gray-100">
+                        💬 Chat Anónimo
+                    </a>
+                    <a href="/test" class="bg-white text-pink-600 px-4 py-3 rounded-full font-bold hover:bg-gray-100">
+                        📋 Test
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .filter-btn {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+        }
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .filter-btn:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+    </style>
+
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const historiasCards = document.querySelectorAll('.historia-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                // Filter cards
+                historiasCards.forEach(card => {
+                    if (filter === 'todas') {
+                        card.style.display = 'block';
+                    } else {
+                        const tipos = card.dataset.tipos.split(',');
+                        if (tipos.includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</Layout>

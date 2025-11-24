@@ -19,9 +19,9 @@ import Layout from '../layouts/Layout.astro';
             
             <div class="flex flex-col md:flex-row gap-4 justify-center mb-12">
                 
-                <button class="bg-gradient-to-r from-red-500 to-orange-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
+                <a href="/sos" class="bg-gradient-to-r from-red-500 to-orange-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
                     🆘 Necesito Ayuda Ahora
-                </button>
+                </a>
                 <!--
                 <button class="bg-card text-purple-600 px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:shadow-2xl border-2 border-purple-600 transform hover:scale-105 transition-all">
                     💜 Quiero Ayudar a Alguien
@@ -40,10 +40,11 @@ import Layout from '../layouts/Layout.astro';
     <section class="py-12 px-4 bg-card">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                <div class="glass rounded-xl p-6 text-center card-hover cursor-pointer">
+                <a href="/sos" class="glass rounded-xl p-6 text-center card-hover cursor-pointer">
                     <div class="text-4xl mb-3">🆘</div>
                     <p class="font-semibold text-primary">Ayuda Inmediata</p>
-                </div>
+                </a>
+                <!-- 
                 <div class="glass rounded-xl p-6 text-center card-hover cursor-pointer">
                     <div class="text-4xl mb-3">📞</div>
                     <p class="font-semibold text-primary">Líneas de Apoyo</p>
@@ -56,10 +57,11 @@ import Layout from '../layouts/Layout.astro';
                     <div class="text-4xl mb-3">⚖️</div>
                     <p class="font-semibold text-primary">Asesoría Legal</p>
                 </div>
-                <div class="glass rounded-xl p-6 text-center card-hover cursor-pointer">
+                 -->
+                <a href="/chat" class="glass rounded-xl p-6 text-center card-hover cursor-pointer">
                     <div class="text-4xl mb-3">💚</div>
                     <p class="font-semibold text-primary">Chat Anónimo</p>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -157,13 +159,13 @@ import Layout from '../layouts/Layout.astro';
             <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Recursos y Herramientas</h2>
             
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass rounded-2xl p-8 card-hover">
+                <a href="/test" class="glass rounded-2xl p-8 card-hover">
                     <h3 class="text-2xl font-bold mb-4 text-purple-600">📋 Test de Autoevaluación</h3>
                     <p class="text-secondary mb-4">¿No estás seguro/a si estás viviendo violencia? Este test te puede ayudar a identificar señales de alerta.</p>
                     <button class="bg-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-purple-700">
                         Comenzar Test
                     </button>
-                </div>
+                </a>
                 <!--
                 <div class="glass rounded-2xl p-8 card-hover">
                     <h3 class="text-2xl font-bold mb-4 text-teal-600">🛡️ Plan de Seguridad</h3>
@@ -181,13 +183,13 @@ import Layout from '../layouts/Layout.astro';
                     </button>
                 </div>
                   -->
-                <div class="glass rounded-2xl p-8 card-hover">
+                <a href="/directorio" class="glass rounded-2xl p-8 card-hover">
                     <h3 class="text-2xl font-bold mb-4 text-pink-600">🏢 Directorio Nacional</h3>
                     <p class="text-secondary mb-4">Encuentra comisarías de familia, casas de refugio y servicios de apoyo en tu ciudad.</p>
                     <button class="bg-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-pink-700">
                         Buscar Cerca
                     </button>
-                </div>
+                </a>
             </div>
         </div>
     </section>
