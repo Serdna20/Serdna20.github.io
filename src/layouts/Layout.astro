@@ -1,26 +1,230 @@
 ---
 import "../styles/global.css";
+const { title = "StopTheCycle - Rompe el Ciclo de Violencia" } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        
+        :root {
+            /* Colores principales */
+            --primary-purple: #667eea;
+            --primary-dark-purple: #764ba2;
+            --primary-teal: #14b8a6;
+            --primary-red: #ef4444;
+            --primary-orange: #f97316;
+            --primary-pink: #ec4899;
+            --primary-blue: #3b82f6;
+            --primary-indigo: #6366f1;
+            
+            /* Colores de fondo - modo claro */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --bg-gradient-start: #faf5ff;
+            --bg-gradient-end: #f0fdfa;
+            
+            /* Colores de texto - modo claro */
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-tertiary: #9ca3af;
+            
+            /* Colores de borde */
+            --border-color: rgba(255, 255, 255, 0.2);
+            --border-dark: #e5e7eb;
+        }
+        
+        [data-theme="dark"] {
+            /* Colores de fondo - modo oscuro */
+            --bg-primary: #1f2937;
+            --bg-secondary: #111827;
+            --bg-gradient-start: #1e1b4b;
+            --bg-gradient-end: #134e4a;
+            
+            /* Colores de texto - modo oscuro */
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --text-tertiary: #9ca3af;
+            
+            /* Colores de borde */
+            --border-color: rgba(255, 255, 255, 0.1);
+            --border-dark: #374151;
+        }
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-primary) 50%, var(--bg-gradient-end) 100%);
+            color: var(--text-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+        }
+        
+        [data-theme="dark"] .glass {
+            background: rgba(31, 41, 55, 0.5);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-dark-purple) 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-dark-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .emergency-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .bg-card {
+            background-color: var(--bg-primary);
+        }
+        
+        .text-primary {
+            color: var(--text-primary);
+        }
+        
+        .text-secondary {
+            color: var(--text-secondary);
+        }
+        
+        .border-custom {
+            border-color: var(--border-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="glass fixed w-full top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-teal-500 rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">S</span>
+                </div>
+                <span class="text-2xl font-bold gradient-text">StopTheCycle</span>
+            </div>
+            <div class="hidden md:flex space-x-6 font-medium items-center">
+                <a href="/" class="text-secondary hover:text-purple-600">Inicio</a>
+                <a href="/#tipos-violencia" class="text-secondary hover:text-purple-600">Tipos de Violencia</a>
+                <a href="/#recursos" class="text-secondary hover:text-purple-600">Recursos</a>
+                <a href="/#testimonios" class="text-secondary hover:text-purple-600">Historias</a>
+                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <span id="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="pt-20">
+        <slot />
+    </main>
+    
+    <!-- Footer Component -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-bold text-lg mb-4">StopTheCycle</h4>
+                    <p class="text-gray-400">Rompiendo el ciclo de violencia intrafamiliar en Colombia.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/" class="hover:text-white">Inicio</a></li>
+                        <li><a href="/#recursos" class="hover:text-white">Recursos</a></li>
+                        <li><a href="/#testimonios" class="hover:text-white">Historias</a></li>
+                        <li><a href="/#contacto" class="hover:text-white">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Emergencias</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Policía: <strong class="text-white">123</strong></li>
+                        <li>Línea Púrpura: <strong class="text-white">155</strong></li>
+                        <li>Fiscalía: <strong class="text-white">122</strong></li>
+                        <li>Nacional: <strong class="text-white">018000 112 137</strong></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Tu Seguridad Primero</h4>
+                    <p class="text-gray-400 text-sm mb-2">Navega de forma segura</p>
+                    <!--
+                    <button id="clear-history" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-full text-sm">
+                        🗑️ Borrar Historial
+                    </button>
+                    -->
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 StopTheCycle. Todos los derechos reservados.</p>
+                <p class="text-sm mt-2">Este sitio no almacena información personal sin tu consentimiento.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+        
+        themeToggle?.addEventListener('click', function() {
+            const theme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        });
+        
+        // Quick exit on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.location.href = 'https://www.elespectador.com/';
+            }
+        });
+        
+        // Clear history button
+        document.getElementById('clear-history')?.addEventListener('click', function() {
+            if (confirm('¿Estás seguro de que quieres borrar tu historial de navegación?')) {
+                // Clear browser history
+                window.history.pushState(null, '', 'https://www.google.com');
+                window.location.href = 'https://www.google.com';
+            }
+        });
+    </script>
+</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

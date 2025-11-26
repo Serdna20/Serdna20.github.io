@@ -1,0 +1,381 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Directorio Nacional - StopTheCycle">
+    <section class="pt-12 pb-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-5xl">🏢</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Directorio Nacional</h1>
+                <p class="text-xl text-secondary max-w-2xl mx-auto">
+                    Encuentra comisarías, refugios, centros de atención y servicios legales en tu ciudad
+                </p>
+            </div>
+
+            <!-- Filtros -->
+            <div class="bg-card rounded-2xl shadow-xl p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-6 gradient-text">Buscar Servicios</h2>
+                
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block font-semibold mb-2 text-primary">Departamento</label>
+                        <select id="departamento" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-primary">
+                            <option value="">Todos los departamentos</option>
+                            <option value="bogota">Bogotá D.C.</option>
+                            <option value="antioquia">Antioquia</option>
+                            <option value="valle">Valle del Cauca</option>
+                            <option value="atlantico">Atlántico</option>
+                            <option value="santander">Santander</option>
+                            <option value="cundinamarca">Cundinamarca</option>
+                            <option value="bolivar">Bolívar</option>
+                            <option value="tolima">Tolima</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-2 text-primary">Ciudad</label>
+                        <select id="ciudad" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-primary">
+                            <option value="">Selecciona departamento primero</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold mb-2 text-primary">Tipo de Servicio</label>
+                        <select id="tipo-servicio" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-primary">
+                            <option value="">Todos los servicios</option>
+                            <option value="comisaria">Comisarías de Familia</option>
+                            <option value="refugio">Casas de Refugio</option>
+                            <option value="legal">Asesoría Legal</option>
+                            <option value="psicologico">Apoyo Psicológico</option>
+                            <option value="caivas">CAIVAS</option>
+                            <option value="hospital">Centros de Salud</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-4 flex gap-4">
+                    <button id="buscar-btn" class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-full font-bold hover:shadow-xl transition-all">
+                        🔍 Buscar
+                    </button>
+                    <button id="limpiar-btn" class="px-6 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200 py-3 rounded-full font-bold hover:bg-gray-400 dark:hover:bg-gray-500 transition-all">
+                        Limpiar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Líneas Nacionales Siempre Visibles -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold mb-4 gradient-text">📞 Líneas Nacionales</h2>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-purple-500 text-white p-6 rounded-xl">
+                        <h3 class="font-bold text-lg mb-2">Línea Púrpura</h3>
+                        <a href="tel:155" class="text-3xl font-bold block mb-2">155</a>
+                        <p class="text-sm">Atención a mujeres - 24/7</p>
+                    </div>
+                    <div class="bg-orange-500 text-white p-6 rounded-xl">
+                        <h3 class="font-bold text-lg mb-2">Nacional</h3>
+                        <a href="tel:018000112137" class="text-2xl font-bold block mb-2">01800 112 137</a>
+                        <p class="text-sm">Violencia intrafamiliar - 24/7</p>
+                    </div>
+                    <div class="bg-blue-500 text-white p-6 rounded-xl">
+                        <h3 class="font-bold text-lg mb-2">ICBF</h3>
+                        <a href="tel:141" class="text-3xl font-bold block mb-2">141</a>
+                        <p class="text-sm">Protección menores - 24/7</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resultados -->
+            <div id="resultados-container">
+                <h2 class="text-2xl font-bold mb-4 gradient-text">Instituciones por Ciudad</h2>
+                <div id="resultados-lista" class="space-y-6">
+                    <!-- Los resultados se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const ciudadesPorDepartamento = {
+            bogota: ['Bogotá'],
+            antioquia: ['Medellín', 'Bello', 'Itagüí', 'Envigado', 'Rionegro'],
+            valle: ['Cali', 'Palmira', 'Buenaventura', 'Tuluá', 'Cartago'],
+            atlantico: ['Barranquilla', 'Soledad', 'Malambo', 'Sabanalarga'],
+            santander: ['Bucaramanga', 'Floridablanca', 'Girón', 'Piedecuesta'],
+            cundinamarca: ['Soacha', 'Fusagasugá', 'Chía', 'Zipaquirá', 'Facatativá'],
+            bolivar: ['Cartagena', 'Magangué', 'Turbaco'],
+            tolima: ['Ibagué', 'Espinal', 'Melgar']
+        };
+
+        const instituciones = [
+            // Bogotá
+            {
+                nombre: "Secretaría Distrital de la Mujer",
+                tipo: "refugio",
+                departamento: "bogota",
+                ciudad: "Bogotá",
+                direccion: "Carrera 7 # 32-16",
+                telefono: "018000 112 137",
+                horario: "24 horas",
+                servicios: ["Refugio temporal", "Apoyo psicológico", "Asesoría legal", "Acompañamiento"],
+                descripcion: "Casa de refugio con ubicación confidencial para mujeres víctimas de violencia"
+            },
+            {
+                nombre: "Comisaría de Familia Usaquén",
+                tipo: "comisaria",
+                departamento: "bogota",
+                ciudad: "Bogotá",
+                direccion: "Calle 106A # 15-25",
+                telefono: "(601) 315 5050",
+                horario: "Lunes a viernes 7am-4pm",
+                servicios: ["Medidas de protección", "Atención urgente", "Orientación familiar"],
+                descripcion: "Comisaría de familia para localidad de Usaquén"
+            },
+            {
+                nombre: "CAIVAS Bogotá",
+                tipo: "caivas",
+                departamento: "bogota",
+                ciudad: "Bogotá",
+                direccion: "Carrera 13 # 32D-93",
+                telefono: "122",
+                horario: "24 horas",
+                servicios: ["Atención integral víctimas", "Medicina legal", "Fiscalía", "Psicología"],
+                descripcion: "Centro de Atención Integral a Víctimas de Abuso Sexual"
+            },
+            {
+                nombre: "Defensoría del Pueblo - Bogotá",
+                tipo: "legal",
+                departamento: "bogota",
+                ciudad: "Bogotá",
+                direccion: "Calle 55 # 10-32",
+                telefono: "018000 914 814",
+                horario: "Lunes a viernes 8am-5pm",
+                servicios: ["Asesoría legal gratuita", "Defensa derechos humanos", "Acompañamiento"],
+                descripcion: "Orientación legal gratuita para víctimas de violencia"
+            },
+            // Medellín
+            {
+                nombre: "Casa de Justicia Comuna 13",
+                tipo: "comisaria",
+                departamento: "antioquia",
+                ciudad: "Medellín",
+                direccion: "Carrera 83 # 42-85",
+                telefono: "(604) 385 5555",
+                horario: "Lunes a viernes 8am-5pm",
+                servicios: ["Comisaría", "Inspección", "Consultorio jurídico"],
+                descripcion: "Servicios integrados de justicia comunitaria"
+            },
+            {
+                nombre: "Secretaría de las Mujeres - Medellín",
+                tipo: "psicologico",
+                departamento: "antioquia",
+                ciudad: "Medellín",
+                direccion: "Carrera 52 # 42-73",
+                telefono: "123",
+                horario: "Lunes a viernes 8am-12pm, 2pm-6pm",
+                servicios: ["Atención psicosocial", "Orientación legal", "Talleres"],
+                descripcion: "Atención integral para mujeres víctimas de violencia"
+            },
+            // Cali
+            {
+                nombre: "Casa de Justicia de la Mujer - Cali",
+                tipo: "comisaria",
+                departamento: "valle",
+                ciudad: "Cali",
+                direccion: "Avenida 2N # 22N-08",
+                telefono: "(602) 885 6666",
+                horario: "Lunes a viernes 8am-5pm",
+                servicios: ["Comisaría", "Fiscalía", "Defensoría", "Medicina Legal"],
+                descripcion: "Centro integrado de atención a mujeres"
+            },
+            {
+                nombre: "CAIVAS Valle del Cauca",
+                tipo: "caivas",
+                departamento: "valle",
+                ciudad: "Cali",
+                direccion: "Calle 7 # 24-37",
+                telefono: "122",
+                horario: "24 horas",
+                servicios: ["Atención víctimas abuso sexual", "Medicina legal", "Psicología"],
+                descripcion: "Centro especializado en atención a víctimas"
+            },
+            // Barranquilla
+            {
+                nombre: "Comisaría de Familia Norte - Barranquilla",
+                tipo: "comisaria",
+                departamento: "atlantico",
+                ciudad: "Barranquilla",
+                direccion: "Calle 62 # 52-27",
+                telefono: "(605) 339 9999",
+                horario: "Lunes a viernes 8am-12pm, 2pm-6pm",
+                servicios: ["Medidas protección", "Orientación", "Seguimiento casos"],
+                descripcion: "Comisaría de familia para zona norte"
+            },
+            // Bucaramanga
+            {
+                nombre: "Casa de la Mujer - Bucaramanga",
+                tipo: "psicologico",
+                departamento: "santander",
+                ciudad: "Bucaramanga",
+                direccion: "Carrera 19 # 35-02",
+                telefono: "(607) 634 1234",
+                horario: "Lunes a viernes 8am-5pm",
+                servicios: ["Apoyo psicológico", "Orientación legal", "Grupos de apoyo"],
+                descripcion: "Centro de atención integral para mujeres"
+            },
+            // Cartagena
+            {
+                nombre: "Comisaría Centro Histórico",
+                tipo: "comisaria",
+                departamento: "bolivar",
+                ciudad: "Cartagena",
+                direccion: "Centro # 34-44",
+                telefono: "(605) 660 0000",
+                horario: "Lunes a viernes 8am-4pm",
+                servicios: ["Medidas protección", "Atención urgencias", "Orientación"],
+                descripcion: "Comisaría de familia centro histórico"
+            },
+            // Ibagué
+            {
+                nombre: "Casa de Igualdad de Oportunidades",
+                tipo: "psicologico",
+                departamento: "tolima",
+                ciudad: "Ibagué",
+                direccion: "Carrera 3 # 11-19",
+                telefono: "(608) 261 4040",
+                horario: "Lunes a viernes 8am-12pm, 2pm-5pm",
+                servicios: ["Atención psicológica", "Asesoría legal", "Talleres"],
+                descripcion: "Centro de atención para mujeres"
+            }
+        ];
+
+        const departamentoSelect = document.getElementById('departamento');
+        const ciudadSelect = document.getElementById('ciudad');
+        const tipoServicioSelect = document.getElementById('tipo-servicio');
+        const buscarBtn = document.getElementById('buscar-btn');
+        const limpiarBtn = document.getElementById('limpiar-btn');
+        const resultadosLista = document.getElementById('resultados-lista');
+
+        departamentoSelect?.addEventListener('change', (e) => {
+            const depto = e.target.value;
+            ciudadSelect.innerHTML = '<option value="">Todas las ciudades</option>';
+            
+            if (depto && ciudadesPorDepartamento[depto]) {
+                ciudadesPorDepartamento[depto].forEach(ciudad => {
+                    const option = document.createElement('option');
+                    option.value = ciudad.toLowerCase();
+                    option.textContent = ciudad;
+                    ciudadSelect.appendChild(option);
+                });
+                ciudadSelect.disabled = false;
+            } else {
+                ciudadSelect.disabled = true;
+            }
+        });
+
+        function mostrarInstituciones(filtradas = instituciones) {
+            if (filtradas.length === 0) {
+                resultadosLista.innerHTML = `
+                    <div class="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-8 text-center">
+                        <span class="text-5xl mb-4 block">🔍</span>
+                        <p class="text-primary font-semibold mb-2">No se encontraron resultados</p>
+                        <p class="text-secondary">Intenta con otros filtros o contacta las líneas nacionales</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const tipoIconos = {
+                comisaria: '⚖️',
+                refugio: '🏠',
+                legal: '👨‍⚖️',
+                psicologico: '💜',
+                caivas: '🏥',
+                hospital: '⚕️'
+            };
+
+            const tipoColores = {
+                comisaria: 'blue',
+                refugio: 'purple',
+                legal: 'indigo',
+                psicologico: 'pink',
+                caivas: 'teal',
+                hospital: 'green'
+            };
+
+            resultadosLista.innerHTML = filtradas.map(inst => `
+                <div class="bg-card rounded-xl p-6 border-l-4 border-${tipoColores[inst.tipo]}-600 hover:shadow-xl transition-all">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-start">
+                            <span class="text-4xl mr-4">${tipoIconos[inst.tipo]}</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-primary mb-1">${inst.nombre}</h3>
+                                <p class="text-sm text-secondary">${inst.ciudad}, ${inst.departamento.charAt(0).toUpperCase() + inst.departamento.slice(1)}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-secondary mb-4">${inst.descripcion}</p>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-4 text-sm">
+                        <div>
+                            <p class="text-secondary"><strong class="text-primary">📍 Dirección:</strong> ${inst.direccion}</p>
+                            <p class="text-secondary"><strong class="text-primary">📞 Teléfono:</strong> <a href="tel:${inst.telefono}" class="text-${tipoColores[inst.tipo]}-600 font-semibold">${inst.telefono}</a></p>
+                            <p class="text-secondary"><strong class="text-primary">⏰ Horario:</strong> ${inst.horario}</p>
+                        </div>
+                        <div>
+                            <p class="text-secondary font-semibold mb-2">Servicios:</p>
+                            <ul class="space-y-1">
+                                ${inst.servicios.map(s => `<li class="text-secondary text-xs">• ${s}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2">
+                        <a href="tel:${inst.telefono}" class="flex-1 bg-${tipoColores[inst.tipo]}-600 text-white text-center py-2 rounded-full text-sm font-semibold hover:bg-${tipoColores[inst.tipo]}-700 transition-all">
+                            Llamar
+                        </a>
+                        <a href="https://www.google.com/maps/search/${encodeURIComponent(inst.direccion + ' ' + inst.ciudad)}" target="_blank" class="flex-1 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200 text-center py-2 rounded-full text-sm font-semibold hover:bg-gray-400 dark:hover:bg-gray-500 transition-all">
+                            Ver Mapa
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        buscarBtn?.addEventListener('click', () => {
+            const depto = departamentoSelect.value.toLowerCase();
+            const ciudad = ciudadSelect.value.toLowerCase();
+            const tipo = tipoServicioSelect.value;
+
+            let filtradas = instituciones;
+
+            if (depto) {
+                filtradas = filtradas.filter(i => i.departamento === depto);
+            }
+            if (ciudad) {
+                filtradas = filtradas.filter(i => i.ciudad.toLowerCase() === ciudad);
+            }
+            if (tipo) {
+                filtradas = filtradas.filter(i => i.tipo === tipo);
+            }
+
+            mostrarInstituciones(filtradas);
+        });
+
+        limpiarBtn?.addEventListener('click', () => {
+            departamentoSelect.value = '';
+            ciudadSelect.value = '';
+            ciudadSelect.innerHTML = '<option value="">Selecciona departamento primero</option>';
+            ciudadSelect.disabled = true;
+            tipoServicioSelect.value = '';
+            mostrarInstituciones();
+        });
+
+        // Mostrar todas las instituciones al cargar
+        mostrarInstituciones();
+    </script>
+</Layout>

@@ -1,0 +1,485 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Chat Anónimo y Línea de Apoyo - StopTheCycle">
+    <section class="pt-12 pb-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-5xl">💬</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">Chat Anónimo y Apoyo</h1>
+                <p class="text-xl text-secondary max-w-2xl mx-auto">
+                    Habla con seguridad. Nadie sabrá quién eres. Recibe orientación profesional sin revelar tu identidad.
+                </p>
+            </div>
+
+            <!-- Opciones principales -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-gradient-to-br from-green-500 to-teal-500 rounded-2xl p-8 text-white cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('chatbot-section').scrollIntoView({behavior: 'smooth'})">
+                    <div class="text-5xl mb-4">🤖</div>
+                    <h2 class="text-2xl font-bold mb-3">Chat Anónimo Automático</h2>
+                    <p class="mb-4">Obtén respuestas inmediatas a tus preguntas. Disponible 24/7, completamente anónimo.</p>
+                    <button class="bg-white text-green-600 px-6 py-3 rounded-full font-bold hover:bg-gray-100">
+                        Iniciar Chat →
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-8 text-white cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('phone-lines').scrollIntoView({behavior: 'smooth'})">
+                    <div class="text-5xl mb-4">📞</div>
+                    <h2 class="text-2xl font-bold mb-3">Líneas de Apoyo</h2>
+                    <p class="mb-4">Habla con profesionales capacitados. Orientación psicológica y legal personalizada.</p>
+                    <button class="bg-white text-purple-600 px-6 py-3 rounded-full font-bold hover:bg-gray-100">
+                        Ver Líneas →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section id="chatbot-section" class="py-12 px-4 bg-card">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center gradient-text">Chat Anónimo</h2>
+            <p class="text-center text-secondary mb-8">
+                Haz tus preguntas sin miedo. Este chat no guarda tu información personal.
+            </p>
+
+            <!-- Chat Interface -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+                <div class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3">
+                            <span class="text-2xl">🤖</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Asistente Virtual StopTheCycle</h3>
+                            <p class="text-xs opacity-90">En línea • Anónimo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="chat-messages" class="h-96 overflow-y-auto p-6 space-y-4 bg-gray-50 dark:bg-gray-900">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                            <span class="text-white text-sm">🤖</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl rounded-tl-none p-4 shadow max-w-md">
+                            <p class="text-secondary">
+                                Hola, soy tu asistente virtual. Estoy aquí para ayudarte de forma <strong>100% anónima y confidencial</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                            <span class="text-white text-sm">🤖</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl rounded-tl-none p-4 shadow max-w-md">
+                            <p class="text-secondary mb-3">¿En qué puedo ayudarte hoy?</p>
+                            <div class="space-y-2">
+                                <button class="quick-reply-btn w-full text-left bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 p-3 rounded-lg text-sm transition-colors" data-message="Creo que estoy viviendo violencia">
+                                    💭 Creo que estoy viviendo violencia
+                                </button>
+                                <button class="quick-reply-btn w-full text-left bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 p-3 rounded-lg text-sm transition-colors" data-message="¿Cómo puedo denunciar?">
+                                    ⚖️ ¿Cómo puedo denunciar?
+                                </button>
+                                <button class="quick-reply-btn w-full text-left bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 p-3 rounded-lg text-sm transition-colors" data-message="Necesito un refugio">
+                                    🏠 Necesito un refugio
+                                </button>
+                                <button class="quick-reply-btn w-full text-left bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 p-3 rounded-lg text-sm transition-colors" data-message="Quiero ayudar a alguien">
+                                    💜 Quiero ayudar a alguien
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex gap-2">
+                        <input 
+                            type="text" 
+                            id="chat-input" 
+                            placeholder="Escribe tu mensaje aquí..." 
+                            class="flex-1 px-4 py-3 rounded-full border border-gray-300 dark:border-gray-600 focus:outline-none focus:border-green-500 bg-white dark:bg-gray-700 text-primary"
+                        />
+                        <button id="send-btn" class="bg-green-500 text-white px-6 py-3 rounded-full font-bold hover:bg-green-600">
+                            Enviar
+                        </button>
+                    </div>
+                    <p class="text-xs text-secondary mt-2 text-center">
+                        🔒 Este chat no almacena información personal. Es 100% anónimo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-6">
+                <h3 class="font-bold mb-2 text-yellow-800 dark:text-yellow-200">⚠️ Importante sobre el Chat</h3>
+                <ul class="space-y-2 text-sm text-secondary">
+                    <li>• Este es un asistente automático orientativo, no reemplaza atención profesional</li>
+                    <li>• Si estás en peligro inmediato, llama al 123</li>
+                    <li>• Para atención personalizada, usa las líneas telefónicas abajo</li>
+                    <li>• El chat no guarda conversaciones ni datos personales</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Líneas Telefónicas -->
+    <section id="phone-lines" class="py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center gradient-text">Líneas de Apoyo Profesional</h2>
+            <p class="text-center text-secondary mb-8">
+                Habla con psicólogos, trabajadores sociales y abogados especializados
+            </p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Línea Púrpura -->
+                <div class="bg-card rounded-xl p-6 border-l-4 border-purple-600 hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-2xl">💜</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Línea Púrpura</h3>
+                            <a href="tel:155" class="text-2xl font-bold text-purple-600">155</a>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-secondary">
+                        <p><strong>Atención:</strong> Mujeres víctimas de violencia</p>
+                        <p><strong>Horario:</strong> 24 horas, 7 días</p>
+                        <p><strong>Servicios:</strong></p>
+                        <ul class="ml-4 space-y-1">
+                            <li>• Orientación psicológica</li>
+                            <li>• Asesoría legal</li>
+                            <li>• Información sobre rutas de atención</li>
+                        </ul>
+                        <p><strong>Cobertura:</strong> Bogotá (aplica en otras ciudades con códigos locales)</p>
+                    </div>
+                    <a href="tel:155" class="mt-4 block bg-purple-600 text-white text-center py-2 rounded-full font-semibold hover:bg-purple-700">
+                        Llamar Ahora
+                    </a>
+                </div>
+
+                <!-- Nacional -->
+                <div class="bg-card rounded-xl p-6 border-l-4 border-orange-600 hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-2xl">📞</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Línea Nacional</h3>
+                            <a href="tel:018000112137" class="text-xl font-bold text-orange-600">01800 112 137</a>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-secondary">
+                        <p><strong>Atención:</strong> Todas las víctimas de violencia</p>
+                        <p><strong>Horario:</strong> 24 horas, 7 días</p>
+                        <p><strong>Servicios:</strong></p>
+                        <ul class="ml-4 space-y-1">
+                            <li>• Orientación inmediata</li>
+                            <li>• Información sobre refugios</li>
+                            <li>• Conexión con autoridades</li>
+                        </ul>
+                        <p><strong>Cobertura:</strong> Todo Colombia</p>
+                        <p><strong>Gratuita desde celular y fijo</strong></p>
+                    </div>
+                    <a href="tel:018000112137" class="mt-4 block bg-orange-600 text-white text-center py-2 rounded-full font-semibold hover:bg-orange-700">
+                        Llamar Ahora
+                    </a>
+                </div>
+
+                <!-- ICBF -->
+                <div class="bg-card rounded-xl p-6 border-l-4 border-blue-600 hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-2xl">👶</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">ICBF</h3>
+                            <a href="tel:141" class="text-2xl font-bold text-blue-600">141</a>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-secondary">
+                        <p><strong>Atención:</strong> Protección de niños, niñas y adolescentes</p>
+                        <p><strong>Horario:</strong> 24 horas, 7 días</p>
+                        <p><strong>Servicios:</strong></p>
+                        <ul class="ml-4 space-y-1">
+                            <li>• Denuncias de maltrato infantil</li>
+                            <li>• Restablecimiento de derechos</li>
+                            <li>• Protección inmediata</li>
+                        </ul>
+                        <p><strong>Cobertura:</strong> Nacional</p>
+                    </div>
+                    <a href="tel:141" class="mt-4 block bg-blue-600 text-white text-center py-2 rounded-full font-semibold hover:bg-blue-700">
+                        Llamar Ahora
+                    </a>
+                </div>
+
+                <!-- Fiscalía -->
+                <div class="bg-card rounded-xl p-6 border-l-4 border-teal-600 hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-2xl">⚖️</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Fiscalía</h3>
+                            <a href="tel:122" class="text-2xl font-bold text-teal-600">122</a>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-secondary">
+                        <p><strong>Atención:</strong> Denuncias penales</p>
+                        <p><strong>Horario:</strong> 24 horas, 7 días</p>
+                        <p><strong>Servicios:</strong></p>
+                        <ul class="ml-4 space-y-1">
+                            <li>• Recepción de denuncias</li>
+                            <li>• Apertura de investigaciones</li>
+                            <li>• Atención en CAIVAS</li>
+                        </ul>
+                        <p><strong>Cobertura:</strong> Nacional</p>
+                    </div>
+                    <a href="tel:122" class="mt-4 block bg-teal-600 text-white text-center py-2 rounded-full font-semibold hover:bg-teal-700">
+                        Llamar Ahora
+                    </a>
+                </div>
+
+                <!-- Salud Mental -->
+                <div class="bg-card rounded-xl p-6 border-l-4 border-indigo-600 hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-2xl">🧠</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Salud Mental</h3>
+                            <a href="tel:106" class="text-2xl font-bold text-indigo-600">106</a>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-secondary">
+                        <p><strong>Atención:</strong> Crisis emocionales y psicológicas</p>
+                        <p><strong>Horario:</strong> 24 horas, 7 días</p>
+                        <p><strong>Servicios:</strong></p>
+                        <ul class="ml-4 space-y-1">
+                            <li>• Contención emocional</li>
+                            <li>• Prevención de suicidio</li>
+                            <li>• Orientación psicológica</li>
+                        </ul>
+                        <p><strong>Cobertura:</strong> Bogotá</p>
+                    </div>
+                    <a href="tel:106" class="mt-4 block bg-indigo-600 text-white text-center py-2 rounded-full font-semibold hover:bg-indigo-700">
+                        Llamar Ahora
+                    </a>
+                </div>
+
+                <!-- Defensoría -->
+                <div class="bg-card rounded-xl p-6 border-l-4 border-pink-600 hover:shadow-xl transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-2xl">👨‍⚖️</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Defensoría del Pueblo</h3>
+                            <a href="tel:018000914814" class="text-lg font-bold text-pink-600">01800 091 4814</a>
+                        </div>
+                    </div>
+                    <div class="space-y-2 text-sm text-secondary">
+                        <p><strong>Atención:</strong> Derechos humanos y orientación legal</p>
+                        <p><strong>Horario:</strong> Lunes a viernes, 8am-5pm</p>
+                        <p><strong>Servicios:</strong></p>
+                        <ul class="ml-4 space-y-1">
+                            <li>• Asesoría jurídica gratuita</li>
+                            <li>• Defensa de derechos</li>
+                            <li>• Acompañamiento en procesos</li>
+                        </ul>
+                        <p><strong>Cobertura:</strong> Nacional</p>
+                    </div>
+                    <a href="tel:018000914814" class="mt-4 block bg-pink-600 text-white text-center py-2 rounded-full font-semibold hover:bg-pink-700">
+                        Llamar Ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consejos para Llamar -->
+    <section class="py-12 px-4 bg-card">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-6 text-center gradient-text">Consejos para Llamar a una Línea de Apoyo</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6">
+                    <h3 class="font-bold mb-3 text-green-600">✅ Prepara tu Llamada</h3>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li>• Busca un lugar privado y seguro</li>
+                        <li>• Ten a mano papel y lápiz para anotar</li>
+                        <li>• No necesitas dar tu nombre real si no quieres</li>
+                        <li>• Puedes colgar en cualquier momento</li>
+                        <li>• No hay preguntas "tontas"</li>
+                    </ul>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6">
+                    <h3 class="font-bold mb-3 text-blue-600">💬 Qué Puedes Preguntar</h3>
+                    <ul class="space-y-2 text-sm text-secondary">
+                        <li>• ¿Lo que vivo es violencia?</li>
+                        <li>• ¿Cómo puedo denunciar?</li>
+                        <li>• ¿Dónde hay refugios seguros?</li>
+                        <li>• ¿Qué pasa después de denunciar?</li>
+                        <li>• ¿Cómo protejo a mis hijos?</li>
+                        <li>• ¿Dónde busco ayuda legal gratuita?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-purple-50 dark:bg-purple-900/20 rounded-xl p-6">
+                <h3 class="font-bold mb-3 text-purple-600">🔒 Tu Llamada Es Confidencial</h3>
+                <p class="text-secondary text-sm mb-2">
+                    Las personas que atienden estas líneas están capacitadas y tienen el deber de:
+                </p>
+                <ul class="space-y-1 text-sm text-secondary ml-4">
+                    <li>• Mantener tu información privada</li>
+                    <li>• No juzgarte ni presionarte</li>
+                    <li>• Respetarte decisiones</li>
+                    <li>• Ofrecerte opciones, no órdenes</li>
+                    <li>• Tratarte con dignidad y respeto</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Chatbot Logic
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        const responses = {
+            'violencia': {
+                text: 'Entiendo tu preocupación. La violencia puede ser física, psicológica, sexual, económica o negligencia. ¿Podrías contarme un poco más sobre tu situación? Recuerda que estoy aquí para ayudarte sin juzgar.',
+                options: ['Violencia física', 'Violencia psicológica', 'Violencia económica', 'No estoy seguro/a']
+            },
+            'denunciar': {
+                text: 'Puedes denunciar en:\n• Comisarías de Familia (primera instancia)\n• Fiscalía (denuncia penal) - Línea 122\n• Policía Nacional - 123\n• ICBF (si hay menores) - 141\n\n¿Quieres saber qué documentos necesitas o cómo es el proceso?',
+                options: ['¿Qué documentos necesito?', '¿Cómo es el proceso?', '¿Qué pasa después?']
+            },
+            'refugio': {
+                text: 'Hay refugios seguros disponibles. Para proteger tu ubicación, te recomiendo:\n\n1. Llamar a la Línea Nacional: 01800 112 137\n2. Línea Púrpura: 155\n3. Comisaría de Familia de tu zona\n\nEllos te indicarán el refugio más cercano de forma confidencial. ¿Estás en situación de peligro inmediato?',
+                options: ['Sí, estoy en peligro', 'No inmediatamente', 'Solo quiero información']
+            },
+            'ayudar': {
+                text: 'Es admirable que quieras ayudar. Lo más importante es:\n\n1. Cree y escucha sin juzgar\n2. NO confrontes al agresor\n3. Ofrece información de líneas de ayuda\n4. Respeta sus tiempos y decisiones\n5. Mantén la confidencialidad\n\n¿La persona es menor de edad o adulto?',
+                options: ['Es menor de edad', 'Es adulto/a', '¿Cómo abordar el tema?']
+            },
+            'default': {
+                text: 'Entiendo. ¿Hay algo específico en lo que pueda ayudarte? Estoy aquí para orientarte sobre violencia intrafamiliar, procesos de denuncia, refugios, o simplemente escucharte.',
+                options: ['Tipos de violencia', 'Cómo denunciar', 'Necesito refugio', 'Ayudar a alguien']
+            }
+        };
+
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex items-start' + (isUser ? ' justify-end' : '');
+            
+            if (isUser) {
+                messageDiv.innerHTML = `
+                    <div class="bg-green-500 text-white rounded-2xl rounded-tr-none p-4 shadow max-w-md">
+                        <p>${text}</p>
+                    </div>
+                    <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center ml-3 flex-shrink-0">
+                        <span class="text-sm">👤</span>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                        <span class="text-white text-sm">🤖</span>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl rounded-tl-none p-4 shadow max-w-md">
+                        <p class="text-secondary whitespace-pre-line">${text}</p>
+                    </div>
+                `;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addOptions(options) {
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'flex items-start';
+            
+            const buttonsHtml = options.map(opt => 
+                `<button class="quick-reply-btn w-full text-left bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 p-3 rounded-lg text-sm transition-colors" data-message="${opt}">
+                    ${opt}
+                </button>`
+            ).join('');
+            
+            optionsDiv.innerHTML = `
+                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0 invisible">
+                    <span class="text-white text-sm">🤖</span>
+                </div>
+                <div class="space-y-2 max-w-md">
+                    ${buttonsHtml}
+                </div>
+            `;
+            
+            chatMessages.appendChild(optionsDiv);
+            
+            // Add event listeners to new buttons
+            optionsDiv.querySelectorAll('.quick-reply-btn').forEach(btn => {
+                btn.addEventListener('click', () => handleMessage(btn.dataset.message));
+            });
+            
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('violencia') || lowerMessage.includes('maltrato') || lowerMessage.includes('abuso')) {
+                return responses.violencia;
+            } else if (lowerMessage.includes('denunc') || lowerMessage.includes('reportar')) {
+                return responses.denunciar;
+            } else if (lowerMessage.includes('refugio') || lowerMessage.includes('alojamiento') || lowerMessage.includes('casa')) {
+                return responses.refugio;
+            } else if (lowerMessage.includes('ayudar') || lowerMessage.includes('amiga') || lowerMessage.includes('familiar')) {
+                return responses.ayudar;
+            } else if (lowerMessage.includes('peligro') || lowerMessage.includes('emergencia') || lowerMessage.includes('urgente')) {
+                return {
+                    text: '🚨 Si estás en peligro INMEDIATO:\n\n• Llama al 123 (Policía)\n• Sal de tu casa si es seguro\n• Ve a un lugar público\n\n¿Puedes llamar ahora?',
+                    options: ['Sí, puedo llamar', 'No puedo hablar', 'Ya pasó el peligro']
+                };
+            }
+            
+            return responses.default;
+        }
+
+        function handleMessage(message) {
+            if (!message.trim()) return;
+            
+            // Add user message
+            addMessage(message, true);
+            chatInput.value = '';
+            
+            // Simulate typing delay
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                addMessage(response.text);
+                
+                if (response.options) {
+                    setTimeout(() => addOptions(response.options), 500);
+                }
+            }, 1000);
+        }
+
+        sendBtn?.addEventListener('click', () => handleMessage(chatInput.value));
+        chatInput?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleMessage(chatInput.value);
+        });
+
+        // Quick reply buttons
+        document.querySelectorAll('.quick-reply-btn').forEach(btn => {
+            btn.addEventListener('click', () => handleMessage(btn.dataset.message));
+        });
+    </script>
+</Layout>
